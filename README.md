@@ -21,3 +21,4 @@ Versione di *node* utilizzata: 20.14.0
     impostiamo *admin* come password
 
     `sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'admin';"`
+1. Inizializza il database eseguendo il file `back_end/src/config/db_init.js` con `node`
