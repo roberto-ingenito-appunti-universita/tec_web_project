@@ -1,5 +1,7 @@
 # TEC-WEB Project
 
+Versione di *node* utilizzata: 20.14.0
+
 ## Installazione del database
 1. Installa postgres
 
