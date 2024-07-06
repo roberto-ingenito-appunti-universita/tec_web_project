@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "angular.ng-template",
+        "esbenp.prettier-vscode",
+        "james-yu.latex-workshop",
+        "nickfode.latex-formatter"
+    ]
+}
