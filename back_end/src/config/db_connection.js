@@ -10,15 +10,11 @@ const connection = new Sequelize({
     dialect: "postgres",
 });
 
-async function connect() {
-    try {
-        await connection.authenticate();
-    } catch (error) {
-        console.error(`error connecting to database: ${error}`);
-    }
+try {
+    await connection.authenticate();
+    console.log("Connection has been established successfully.");
+} catch (error) {
+    console.error(`Error connecting to database: ${error}`);
 }
-connect();
-
-
 
 export default connection;
