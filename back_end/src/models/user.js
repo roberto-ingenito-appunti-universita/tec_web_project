@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import connection from "../config/db_connection.js";
+import bcrypt from "bcrypt"
 
 const User = connection.define(
     'user',
@@ -31,7 +32,20 @@ const User = connection.define(
         timestamps: true, // generate createdAt
         updatedAt: false, // disable autogeneration of updatedAt
         freezeTableName: true, // disable the modification of tablenames
+        hooks: {
+            async beforeCreate(user) { await hashUserPassword(user); },
+            async beforeUpdate(user) { await hashUserPassword(user); },
+            async beforeBulkCreate(users) { await Promise.all(users.map(async (user) => { await hashUserPassword(user); })) },
+            async beforeBulkUpdate(users) { await Promise.all(users.map(async (user) => { await hashUserPassword(user); })) },
+        }
     }
 );
+
+async function hashUserPassword(user) {
+    if (user.password) {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt)
+    }
+}
 
 export default User;
