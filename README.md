@@ -1,6 +1,9 @@
 # TEC-WEB Project
 
-Versione di *node* utilizzata: 20.14.0
+## Versioni
+Angular CLI: 18.0.7
+Node: 20.14.0
+Package Manager: npm 10.8.1
 
 ## Installazione del database
 1. Installa postgres
