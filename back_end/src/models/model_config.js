@@ -3,19 +3,19 @@ import User from "./user.js";
 import Vote from "./vote.js";
 import Comment from "./comment.js";
 
-Idea.hasMany(Vote, { foreignKey: { name: 'vote_fk', allowNull: false }, onDelete: "CASCADE" });
-Vote.belongsTo(Idea, { foreignKey: { name: 'vote_fk' } });
+Idea.hasMany(Vote, { foreignKey: { name: "ideaFK", allowNull: false }, onDelete: "CASCADE" });
+Vote.belongsTo(Idea, { foreignKey: { name: "ideaFK", allowNull: false } });
 
-Idea.hasMany(Comment, { foreignKey: { name: 'comment_fk', allowNull: false }, onDelete: "CASCADE" });
-Comment.belongsTo(Idea, { foreignKey: { name: 'comment_fk' } });
+Idea.hasMany(Comment, { foreignKey: { name: "ideaFK", allowNull: false }, onDelete: "CASCADE" });
+Comment.belongsTo(Idea, { foreignKey: { name: "ideaFK", allowNull: false } });
 
-User.hasMany(Comment, { foreignKey: { name: 'comment_fk', allowNull: false }, onDelete: "CASCADE" });
-Comment.belongsTo(User, { foreignKey: { name: 'comment_fk' } });
+User.hasMany(Comment, { foreignKey: { name: "userFK", allowNull: false }, onDelete: "CASCADE" });
+Comment.belongsTo(User, { foreignKey: { name: "userFK", allowNull: false } });
 
-User.hasMany(Idea, { foreignKey: { name: 'idea_fk', allowNull: false }, onDelete: "CASCADE" });
-Idea.belongsTo(User, { foreignKey: { name: 'idea_fk' } });
+User.hasMany(Idea, { foreignKey: { name: "userFK", allowNull: false }, onDelete: "CASCADE" });
+Idea.belongsTo(User, { foreignKey: { name: "userFK", allowNull: false } });
 
-User.hasMany(Vote, { foreignKey: { name: 'vote_fk', allowNull: false }, onDelete: "CASCADE" });
-Vote.belongsTo(User, { foreignKey: { name: 'vote_fk' } });
+User.hasMany(Vote, { foreignKey: { name: "userFK", allowNull: false }, onDelete: "CASCADE" });
+Vote.belongsTo(User, { foreignKey: { name: "userFK", allowNull: false } });
 
 
