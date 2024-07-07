@@ -15,12 +15,15 @@ Package Manager: npm 10.8.1
 
     per il nostro scopo, assegneremo la password *admin*
 
-    `sudo passwd postgres` 
+    `sudo passwd postgres`
+   - Su Arch: inizializza il DB `su -l postgres -c "initdb --locale=C.UTF-8 --encoding=UTF8 -D '/var/lib/postgres/data'"`
 1. Avvia il server
 
     `sudo service postgresql start`
 
     altre opzioni sono `start | stop | restart | reload | force-reload | status`
+   - Su Arch: `sudo systemctl start postgresql.service`
+        
 1. Modifica la password dell'utente *postgres* (utente sul database)
 
     impostiamo *admin* come password
