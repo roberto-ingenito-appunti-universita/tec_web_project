@@ -7,30 +7,49 @@
   <body>
     <div class="container">
       <div class="left-column">
-        <div>
-          <h2>HiveMind: condividi le tue idee</h2>
-          <p>
-            Condividi i tuoi pensieri, esplora le idee degli altri e trova
-            ispirazione
-          </p>
+        <div class="left-column-item1">
+          <div>
+            <h2>HiveMind: condividi le tue idee</h2>
+            <p>
+              Dai libero sfogo ai tuoi pensieri, esplora le idee degli altri e
+              trova ispirazione!
+            </p>
+          </div>
+          <div class="idea-container">
+            TODO: inserire carosello di 5 idee presenti nel DB
+          </div>
+        </div>
+        <div class="arrow-down-container" (click)="scrollToForm('smooth')">
+          <p>Scorri per accedere</p>
+          <div class="arrow-down"></div>
         </div>
       </div>
-      <div class="right-column">
+      <div id="signInForm" class="right-column">
         <div class="login-container">
           <h1>Accedi al tuo account</h1>
+
           <form id="loginForm">
             <div class="input-group">
-              <input type="text" id="username" placeholder=" " required />
-              <label for="username">Nome utente</label>
+              <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                required
+              />
             </div>
             <div class="input-group">
-              <input type="password" id="password" placeholder=" " required />
-              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
             </div>
             <button type="submit">Accedi</button>
           </form>
+
           <div class="register-link">
-            Non hai un account? <a href="#" id="registerLink">Registrati ora</a>
+            Non hai un account? <a href="/signup">Registrati ora</a>
           </div>
         </div>
       </div>

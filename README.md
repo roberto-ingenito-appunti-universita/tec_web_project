@@ -25,3 +25,17 @@ Package Manager: npm 10.8.1
 
     `sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'admin';"`
 1. Inizializza il database eseguendo il file `back_end/src/config/db_init.js` con `node`
+
+## Font & Colors
+- Azeret Mono
+- Fragment Mono
+
+https://uicolors.app/create
+
+200 background 600 sopra, colore del testo 900/950
+
+BOTTONE:
+- 500 background
+- 600 hover
+- 700 active
+- disabilitato: 100 background e 400 text

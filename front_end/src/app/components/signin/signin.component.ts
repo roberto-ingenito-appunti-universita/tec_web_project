@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './signin.component.scss'
 })
 export class SigninComponent {
-
+  scrollToForm(behavior: "smooth" | "instant") {
+    document.getElementById("signInForm")?.scrollIntoView({ behavior: behavior });
+  }
 }

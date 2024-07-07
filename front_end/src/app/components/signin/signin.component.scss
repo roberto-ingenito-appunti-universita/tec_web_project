@@ -1,13 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
-@import "../../../styles/variables.scss";
+@import "../../styles/theme_variables";
 
-body,
-html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: "Poppins", sans-serif;
-  background-color: $background;
+body {
+  background-color: $primary50;
 }
 
 .container {
@@ -16,19 +10,57 @@ html {
 }
 
 .left-column {
-  background: $primary;
+  /* center */
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  color: white;
+  justify-content: start;
+
+  /* colors */
+  background: $primary200;
+  color: $primary600;
   padding: 2rem;
 
-  margin: 10px;
   width: 500px;
-  border-radius: 12px;
+}
+
+.left-column-item1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.arrow-down-container {
+  display: none;
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px); /* Altezza a cui l'elemento si sposta in su */
+  }
+  100% {
+    transform: translateY(0px); /* Torna alla posizione originale */
+  }
+}
+.arrow-down {
+  mask-image: url("../../../assets/icons/chevron-down-solid.svg");
+  width: 40px;
+  height: 40px;
+  background-color: $primary600;
+  animation: upDown 1.5s ease-in-out infinite;
+}
+
+.left-column h2 {
+  margin-bottom: 10px;
 }
 
 .right-column {
+  /* center */
   flex: 1;
   display: flex;
   align-items: center;
@@ -36,16 +68,14 @@ html {
 }
 
 .login-container {
-  background-color: white;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
+  max-width: fit-content;
+  // background-color: $primary50;
 }
 
 h1 {
-  color: #333;
+  color: $primary600;
   margin-bottom: 1.5rem;
 }
 
@@ -56,51 +86,37 @@ form {
 
 .input-group {
   margin-bottom: 1rem;
-  position: relative;
 }
 
 .input-group input {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 2px solid $primary100;
+  background-color: white;
   font-size: 1rem;
   transition: border-color 0.3s;
+  border-radius: 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 .input-group input:focus {
-  border-color: #a777e3;
+  border-color: $primary600;
+  border-width: 2px;
+  border-radius: 8px;
   outline: none;
 }
 
-.input-group label {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  color: #999;
-  transition: all 0.3s;
-  pointer-events: none;
-}
-
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
-  top: -0.5rem;
-  left: 0.5rem;
-  font-size: 0.75rem;
-  color: #a777e3;
-  background-color: white;
-  padding: 0 0.25rem;
-}
-
 button {
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
-  color: white;
+  background: $primary500;
+  color: $primary50;
   padding: 0.75rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: 0.2s;
 }
 
 button:hover {
@@ -111,31 +127,54 @@ button:hover {
 .register-link {
   text-align: center;
   margin-top: 1rem;
-  color: #666;
+  color: $primary950;
 }
 
 .register-link a {
-  color: #6e8efb;
+  color: $secondary600;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: bold;
+  padding: 4px 8px;
 }
 
 .register-link a:hover {
-  text-decoration: underline;
+  background-color: $secondary200;
+  border-radius: 8px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .container {
     flex-direction: column;
   }
 
-  .left-column,
-  .right-column {
+  .left-column {
     flex: none;
     width: auto;
+    margin: 0px;
+    border-radius: 0;
+    height: calc(100vh - 2rem);
+  }
+
+  .right-column {
+    flex: none;
+    height: 100vh;
   }
 
   .left-column {
     padding: 1rem;
+  }
+
+  .arrow-down-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 12px;
+
+    color: $primary600;
+    font-weight: bold;
+  }
+  .arrow-down-container:hover {
+    cursor: pointer;
   }
 }
