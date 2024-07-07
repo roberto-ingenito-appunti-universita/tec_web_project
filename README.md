@@ -29,7 +29,10 @@ Package Manager: npm 10.8.1
     impostiamo *admin* come password
 
     `sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'admin';"`
-1. Inizializza il database eseguendo il file `back_end/src/config/db_init.js` con `node`
+1. esegui `npm install` in entrambe le cartelle `back_end` e `front_end`
+1. Inizializza il database con `node back_end/src/config/db_init.js`
+
+    Successivamente esegui `node back_end/src/config/db_fill.js` per riempire il DB con dati di test.
 
 ## Font & Colors
 - Azeret Mono
