@@ -1,1 +1,55 @@
-<p>signup works!</p>
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="container">
+      <app-auth-landing
+        formElementId="signUpForm"
+        [isSignin]="false"
+      ></app-auth-landing>
+
+      <div id="signUpForm" class="right-column">
+        <div class="login-container">
+          <h1>Registrati</h1>
+
+          <form id="loginForm">
+            <div class="input-group">
+              <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            <div style="display: flex; gap: 8px">
+              <div class="input-group">
+                <input type="text" id="first_name" placeholder="Nome" />
+              </div>
+              <div class="input-group">
+                <input type="text" id="last_name" placeholder="Cognome" />
+              </div>
+            </div>
+
+            <button type="submit">Registrati</button>
+          </form>
+
+          <div class="register-link">
+            Hai già un account? <a  (click)="navigateToSigninPage()">Accedi</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

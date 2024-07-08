@@ -1,15 +1,28 @@
 import { Component } from '@angular/core';
-import { CarouselComponent } from './components/carousel/carousel.component';
+import { AuthLandingComponent } from '../../components/auth-landing/auth-landing.component';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [CarouselComponent],
+  imports: [AuthLandingComponent, RouterLink],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss'
 })
 export class SigninComponent {
-  scrollToForm(behavior: "smooth" | "instant") {
-    document.getElementById("signInForm")?.scrollIntoView({ behavior: behavior });
+  constructor(private router: Router, private route: ActivatedRoute) { }
+
+  navigateToSignupPage() {
+    this.router.navigate(['/signup'], { fragment: 'scrollDown' });
+  }
+
+  ngOnInit() {
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment === "scrollDown") {
+        document.getElementById("signInForm")?.scrollIntoView({ behavior: 'instant' });
+      }
+    })
   }
 }

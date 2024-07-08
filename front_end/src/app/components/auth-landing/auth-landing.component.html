@@ -1,0 +1,17 @@
+<div class="left-column">
+  <h1 class="title">HiveMind</h1>
+  <div class="left-column-item1">
+    <div>
+      <h2>Condividi le tue idee</h2>
+      <p>
+        Dai libero sfogo ai tuoi pensieri, esplora le idee degli altri e trova
+        ispirazione!
+      </p>
+    </div>
+    <app-carousel class="idea-container"></app-carousel>
+  </div>
+  <div class="arrow-down-container" (click)="scrollToForm('smooth')">
+    <p>Scorri per {{ isSignin ? "accedere" : "registrarti" }}</p>
+    <div class="arrow-down"></div>
+  </div>
+</div>
