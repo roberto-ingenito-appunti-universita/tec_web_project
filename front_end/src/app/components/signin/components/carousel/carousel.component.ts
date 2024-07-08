@@ -11,22 +11,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class CarouselComponent {
   items = [
-    {
-      title: "titolo",
-      description: "description",
-    },
-    {
-      title: "aaa",
-      description: "aaa",
-    },
-    {
-      title: "bbb",
-      description: "bbb",
-    },
-    {
-      title: "ccc",
-      description: "ccc",
-    },
+    { title: 'Sistema di Raccomandazione', description: 'Un sistema che suggerisce articoli in base alle preferenze dell\'utente.' },
+    { title: 'App di Ricette', description: 'Una app mobile che offre ricette personalizzate in base agli ingredienti disponibili.' },
+    { title: 'Piattaforma di E-learning', description: 'Una piattaforma per la creazione e la condivisione di corsi online.' },
+    { title: 'Servizio di Car Sharing', description: 'Un servizio che permette agli utenti di noleggiare auto a breve termine in città.' },
+    { title: 'Social Network per Animali', description: 'Un social network dedicato agli amanti degli animali domestici.' },
   ];
   interval: number = 5000; // Intervallo in millisecondi
 

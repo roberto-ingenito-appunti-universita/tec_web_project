@@ -1,8 +1,19 @@
 <div class="carousel-container">
-  <mat-spinner></mat-spinner>
-  
+  <div class="idea-text-container">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <img src="assets/icons/idea.svg" class="idea-icon" />
+      <p class="title">Idea!</p>
+    </div>
+    <mat-progress-spinner
+      mode="determinate"
+      diameter="25"
+      strokeWidth="4"
+      [value]="progressPercentage"
+    ></mat-progress-spinner>
+  </div>
+
   <div class="carousel-content">
-    <h2>{{ currentItem.title }}</h2>
-    <p>{{ currentItem.description }}</p>
+    <p class="title">{{ currentItem.title }}</p>
+    <p class="description">{{ currentItem.description }}</p>
   </div>
 </div>

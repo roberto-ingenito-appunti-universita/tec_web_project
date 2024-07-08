@@ -1,14 +1,52 @@
+@import "../../../../styles/theme_variables.scss";
+
 .carousel-container {
   display: flex;
-  align-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
 }
 
-.progress-indicator {
-  color: red;
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #bfdbc4;
 }
 
 .carousel-content {
-  padding: 20px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.description {
+  font-weight: normal;
+  font-size: 16px;
+
+  /* show max 2 lines */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Limita a 2 righe */
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.idea-text-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  align-self: stretch;
+
+  margin-bottom: 20px;
+}
+
+.idea-icon {
+  width: 30px;
+  height: 30px;
 }
