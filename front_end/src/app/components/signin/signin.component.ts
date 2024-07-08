@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [],
+  imports: [CarouselComponent],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss'
 })

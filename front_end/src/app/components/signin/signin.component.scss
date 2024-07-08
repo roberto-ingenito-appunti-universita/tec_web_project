@@ -2,6 +2,11 @@
 
 body {
   background-color: $primary50;
+
+  /* disable scroll bar */
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .container {
@@ -22,6 +27,18 @@ body {
   padding: 2rem;
 
   width: 500px;
+}
+
+.title {
+  color: $primary600;
+  margin-bottom: 8px;
+  align-self: flex-start;
+  font-family: AzeretMono;
+}
+
+h2 {
+  color: $primary600;
+  margin-bottom: 1.5rem;
 }
 
 .left-column-item1 {
@@ -74,11 +91,6 @@ body {
   // background-color: $primary50;
 }
 
-h1 {
-  color: $primary500;
-  margin-bottom: 1.5rem;
-}
-
 form {
   display: flex;
   flex-direction: column;
@@ -102,7 +114,7 @@ form {
 }
 
 .input-group input:focus {
-  border-color: $primary500;
+  border-color: $primary600;
   border-width: 2px;
   border-radius: 8px;
   outline: none;
@@ -140,6 +152,14 @@ button:hover {
 .register-link a:hover {
   background-color: $secondary200;
   border-radius: 8px;
+}
+
+.idea-container {
+  background-color: $primary600;
+  color: $primary200;
+  align-self: stretch;
+  max-width: 500px;
+  border-radius: 12px;
 }
 
 @media (max-width: 1100px) {
