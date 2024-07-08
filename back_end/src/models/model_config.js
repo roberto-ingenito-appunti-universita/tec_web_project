@@ -19,3 +19,4 @@ User.hasMany(Vote, { foreignKey: { name: "userFK", allowNull: false }, onDelete:
 Vote.belongsTo(User, { foreignKey: { name: "userFK", allowNull: false } });
 
 
+export { Idea, Vote, Comment, User };
