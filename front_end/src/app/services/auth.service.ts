@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
@@ -11,17 +11,20 @@ export class AuthService {
     signUp(username: string, password: string) {
         this.http.post<{ token: string }>(
             `${this.apiUrl}/signup`, // url
-            { username: username, password: password } // body 
+            { username: username, password: password }, // body 
+            { headers: { "Content-Type": "application/json" } }
         ).subscribe((response) => {
-            localStorage.setItem('token', response.token);
-            this.router.navigate(['/home']);
+            /*   localStorage.setItem('token', response.token);
+              this.router.navigate(['/home']); */
+            console.log(response);
         });
     }
 
     signIn(username: string, password: string) {
         this.http.post<{ token: string }>(
             `${this.apiUrl}/signin`, // url
-            { username: username, password: password } // body 
+            { username: username, password: password }, // body 
+            { headers: { "Content-Type": "application/json" } }
         ).subscribe((response) => {
             localStorage.setItem('token', response.token);
             this.router.navigate(['/home']);

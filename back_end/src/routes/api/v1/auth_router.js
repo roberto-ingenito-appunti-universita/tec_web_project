@@ -2,17 +2,17 @@ import express from 'express';
 
 const authRouter = express.Router();
 
-authRouter.get(
+authRouter.post(
     '/api/v1/auth/signin',
-    async (req, res, next) => {
-        res.status(200).json({ a: "a" });
+    (req, res, next) => {
+        res.status(200).json({message: "tutt appost"});
     }
 )
 
-authRouter.get(
+authRouter.post(
     '/api/v1/auth/signup',
-    async (req, res, next) => {
-        res.status(200).json({ req: "req" });
+    (req, res, next) => {
+        res.status(200).json({message: "tutt appost"});
     }
 )
 
