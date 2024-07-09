@@ -11,6 +11,6 @@ export default function authInterceptor(request: HttpRequest<any>, next: HttpHan
             setHeaders: { Authorization: `Bearer ${token}` }
         });
     }
-
+    
     return next(request);
 }
