@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthLandingComponent } from '../../components/auth-landing/auth-landing.component';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -20,7 +19,6 @@ export class SignupComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private http: HttpClient,
     private authService: AuthService,
   ) { }
 
@@ -41,10 +39,11 @@ export class SignupComponent {
     if (this.loginForm.valid) {
       const username = this.loginForm.controls.username.value!;
       const password = this.loginForm.controls.password.value!;
+      const firstName = this.loginForm.controls.firstName.value;
+      const lastName = this.loginForm.controls.lastName.value;
 
-      this.authService.signUp(username, password);
+      this.authService.signUp(username, password, firstName, lastName);
     }
-
   }
 
   navigateToSigninPage() {

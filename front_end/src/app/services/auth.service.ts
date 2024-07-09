@@ -8,10 +8,15 @@ export class AuthService {
 
     constructor(private http: HttpClient, private router: Router) { }
 
-    signUp(username: string, password: string) {
+    signUp(
+        username: string,
+        password: string,
+        firstName: string | null,
+        lastName: string | null
+    ) {
         this.http.post<{ token: string }>(
             `${this.apiUrl}/signup`, // url
-            { username: username, password: password }, // body 
+            { username: username, password: password, firstName: firstName, lastName: lastName }, // body 
             { headers: { "Content-Type": "application/json" } }
         ).subscribe((response) => {
             /*   localStorage.setItem('token', response.token);
@@ -26,8 +31,9 @@ export class AuthService {
             { username: username, password: password }, // body 
             { headers: { "Content-Type": "application/json" } }
         ).subscribe((response) => {
-            localStorage.setItem('token', response.token);
-            this.router.navigate(['/home']);
+            /*     localStorage.setItem('token', response.token);
+                this.router.navigate(['/home']); */
+            console.log(response);
         });
     }
 
