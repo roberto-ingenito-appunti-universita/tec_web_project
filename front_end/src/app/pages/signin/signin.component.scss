@@ -99,6 +99,11 @@ button:hover {
   cursor: pointer;
 }
 
+.error-message {
+  color: red;
+  margin-bottom: 24px;
+}
+
 @media (max-width: 1100px) {
   .container {
     flex-direction: column;

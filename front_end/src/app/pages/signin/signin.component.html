@@ -15,12 +15,17 @@
         <div class="login-container">
           <h1>Accedi</h1>
 
-          <form id="loginForm">
+          <form
+            id="loginForm"
+            [formGroup]="loginForm"
+            (ngSubmit)="onSignUpTap()"
+          >
             <div class="input-group">
               <input
                 type="text"
                 id="username"
                 placeholder="Username"
+                formControlName="username"
                 required
               />
             </div>
@@ -29,9 +34,17 @@
                 type="password"
                 id="password"
                 placeholder="Password"
+                formControlName="password"
                 required
               />
             </div>
+
+            @if (isUsernameInvalid) {
+            <p class="error-message">Username non valido</p>
+            } @else if (isPasswordInvalid) {
+            <p class="error-message">Password non valida</p>
+            }
+
             <button type="submit">Accedi</button>
           </form>
 
