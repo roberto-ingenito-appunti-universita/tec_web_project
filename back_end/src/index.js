@@ -1,13 +1,12 @@
 // nodemon --exec node src/index.js
 
 import express from "express";
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import userRouter from "./routes/user_router.js";
+import userRouter from "./routes/api/v1/user_router.js";
+import authRouter from "./routes/api/v1/auth_router.js";
 import cors from 'cors';
+import dotenv from 'dotenv';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+dotenv.config()
 
 const PORT = 3000;
 const app = express()
@@ -15,9 +14,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-
 /* routes */
 app.use(userRouter);
+app.use(authRouter);
 
 app.listen(PORT);
 console.log('server started');

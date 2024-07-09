@@ -1,12 +1,13 @@
 import express from 'express';
-import { checkUserAuth } from '../services/check_user_auth.js';
-import { User } from '../models/model_config.js'
+import { User } from '../../../models/model_config.js'
+import AuthController from '../../../controllers/auth_controller.js';
 
 const userRouter = express.Router();
+const authController = new AuthController();
 
 userRouter.get(
-    '/user/:username',
-    checkUserAuth,
+    '/api/v1/user/:username',
+    authController.authenticateToken,
     async (req, res, next) => {
         try {
             const result = await User.findByPk(req.params.username);
@@ -22,6 +23,5 @@ userRouter.get(
     }
 
 )
-
 
 export default userRouter;
