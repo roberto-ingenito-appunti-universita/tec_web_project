@@ -1,0 +1,63 @@
+@import "../../styles/theme_variables.scss";
+
+nav {
+  /* colors */
+  background-color: $primary600;
+  color: $primary200;
+
+  /* size */
+  height: 40px;
+  width: calc(100vw - (2 * 12px));
+  padding: 6px 12px;
+
+  /* alignment */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 12px;
+}
+
+nav div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.new-idea-container {
+  display: flex;
+  flex-direction: row;
+
+  background-color: $secondary200;
+  color: $secondary700;
+  font-weight: bold;
+  padding: 4px;
+  border-radius: 8px;
+
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.new-idea-container:hover {
+  box-shadow: 0 0px 12px rgba(255, 255, 255, 0.5);
+}
+
+.profile-button {
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  background-color: $secondary200;
+  padding: 6px;
+  border-radius: 20px;
+}
+.profile-button:hover {
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 0px 12px rgba(255, 255, 255, 0.5);
+}
