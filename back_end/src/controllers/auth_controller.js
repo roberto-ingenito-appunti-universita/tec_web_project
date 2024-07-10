@@ -1,20 +1,27 @@
 import jwt from 'jsonwebtoken'
+import { User } from '../models/model_config.js'
+import bcrypt from 'bcrypt'
 
 export default class AuthController {
 
-    /*
-    app.post('/login', (req, res) => {
-        const { username, password } = req.body;
-    
-        if (username === 'user' && password === 'password') {
-            // Genera il token JWT
-            const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
-    
-            res.json({ token });
-        } else {
-            res.status(401).json({ message: 'Credenziali non valide' });
-        }
-    }); */
+    async signup({ username, password, firstName, lastName }) {
+        return await User.create({
+            username: username,
+            password: password,
+            firstName: firstName,
+            lastName: lastName
+        });
+    }
+
+    async signin({ username, password }) {
+        const user = await User.findByPk(username);
+
+        if (!user) return null;
+
+        // match password inserita, con la password criptata sul database  
+        const passwordMatch = await bcrypt.compare(password, user.password)
+        return passwordMatch ? user : null;
+    }
 
     authenticateToken(req, res, next) {
         const authHeader = req.headers['authorization'];
