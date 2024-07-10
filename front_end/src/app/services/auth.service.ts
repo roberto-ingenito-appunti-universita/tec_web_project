@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginResponse } from '../model/login_response.type';
+import LocalStorageKeys from '../local_storage_keys';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -22,11 +23,13 @@ export class AuthService {
             { headers: { "Content-Type": "application/json" } }
         ).subscribe({
             next: (response) => {
-                localStorage.setItem('token', response.token);
+                localStorage.setItem(LocalStorageKeys.jwtToken, response.token);
+                localStorage.setItem(LocalStorageKeys.userData, JSON.stringify(response.user));
                 this.router.navigate(['/home']);
             },
             error: errorCallback,
         });
+
     }
 
     signIn(
@@ -40,7 +43,8 @@ export class AuthService {
             { headers: { "Content-Type": "application/json" } }
         ).subscribe({
             next: (response) => {
-                localStorage.setItem('token', response.token);
+                localStorage.setItem(LocalStorageKeys.jwtToken, response.token);
+                localStorage.setItem(LocalStorageKeys.userData, JSON.stringify(response.user));
                 this.router.navigate(['/home']);
             },
             error: errorCallback,
@@ -48,12 +52,13 @@ export class AuthService {
     }
 
     signOut() {
-        localStorage.removeItem('token');
+        localStorage.removeItem(LocalStorageKeys.jwtToken);
+        localStorage.removeItem(LocalStorageKeys.userData);
         this.router.navigate(['/signin']);
     }
 
     getToken(): string | null {
-        return localStorage.getItem('token');
+        return localStorage.getItem(LocalStorageKeys.jwtToken);
     }
 
     isLoggedIn(): boolean {
