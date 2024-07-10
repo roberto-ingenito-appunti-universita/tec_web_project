@@ -23,23 +23,27 @@ export class SigninComponent {
     private route: ActivatedRoute,
     private authService: AuthService,
   ) { }
-  isUsernameInvalid: boolean = false;
-  isPasswordInvalid: boolean = false;
+  errorMessage: string | null = null;
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.pattern('^[a-zA-Z0-9_]+(?<!_)$')]),
     password: new FormControl('', [Validators.required]),
   });
 
-  onSignUpTap() {
-    this.isUsernameInvalid = this.loginForm.controls.username.invalid;
-    this.isPasswordInvalid = this.loginForm.controls.password.invalid;
-
-    if (this.loginForm.valid) {
+  onSignInTap() {
+    if (this.loginForm.controls.username.invalid) {
+      this.errorMessage = "Username non valido";
+    } else if (this.loginForm.controls.password.invalid) {
+      this.errorMessage = "Password non valida";
+    } else if (this.loginForm.valid) {
       const username = this.loginForm.controls.username.value!;
       const password = this.loginForm.controls.password.value!;
 
-      this.authService.signIn(username, password);
+      this.authService.signIn(
+        username,
+        password,
+        (_) => { this.errorMessage = "Credenziali non valide"; }
+      );
     }
   }
 

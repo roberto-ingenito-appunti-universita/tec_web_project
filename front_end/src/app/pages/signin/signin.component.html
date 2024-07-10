@@ -18,7 +18,7 @@
           <form
             id="loginForm"
             [formGroup]="loginForm"
-            (ngSubmit)="onSignUpTap()"
+            (ngSubmit)="onSignInTap()"
           >
             <div class="input-group">
               <input
@@ -39,10 +39,8 @@
               />
             </div>
 
-            @if (isUsernameInvalid) {
-            <p class="error-message">Username non valido</p>
-            } @else if (isPasswordInvalid) {
-            <p class="error-message">Password non valida</p>
+            @if (errorMessage) {
+            <p class="error-message">{{ errorMessage }}</p>
             }
 
             <button type="submit">Accedi</button>

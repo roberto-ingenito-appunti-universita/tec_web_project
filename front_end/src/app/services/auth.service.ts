@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginResponse } from '../model/login_response.type';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -12,28 +13,37 @@ export class AuthService {
         username: string,
         password: string,
         firstName: string | null,
-        lastName: string | null
+        lastName: string | null,
+        errorCallback: (err: any) => void
     ) {
-        this.http.post<{ token: string }>(
+        this.http.post<LoginResponse>(
             `${this.apiUrl}/signup`, // url
             { username: username, password: password, firstName: firstName, lastName: lastName }, // body 
             { headers: { "Content-Type": "application/json" } }
-        ).subscribe((response) => {
-            /*   localStorage.setItem('token', response.token);
-              this.router.navigate(['/home']); */
-            console.log(response);
+        ).subscribe({
+            next: (response) => {
+                localStorage.setItem('token', response.token);
+                this.router.navigate(['/home']);
+            },
+            error: errorCallback,
         });
     }
 
-    signIn(username: string, password: string) {
-        this.http.post<{ token: string }>(
+    signIn(
+        username: string,
+        password: string,
+        errorCallback: (err: any) => void
+    ) {
+        this.http.post<LoginResponse>(
             `${this.apiUrl}/signin`, // url
             { username: username, password: password }, // body 
             { headers: { "Content-Type": "application/json" } }
-        ).subscribe((response) => {
-            /*     localStorage.setItem('token', response.token);
-                this.router.navigate(['/home']); */
-            console.log(response);
+        ).subscribe({
+            next: (response) => {
+                localStorage.setItem('token', response.token);
+                this.router.navigate(['/home']);
+            },
+            error: errorCallback,
         });
     }
 
