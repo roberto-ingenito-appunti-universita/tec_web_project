@@ -11,7 +11,23 @@ import { Idea } from '../../model/idea.type';
 export class HomeComponent {
   items: Idea[] = [
     { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    ...Array(100).fill({ createdAt: new Date(), description: "desc", title: "title", id: 1 })
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaaaaaaaaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
   ];
 
 }
