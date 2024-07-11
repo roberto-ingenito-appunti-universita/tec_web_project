@@ -8,7 +8,7 @@ const authController = new AuthController();
 const ideaController = new IdeaController();
 
 ideaRouter.get(
-    '/api/v1/ideas',
+    '/api/v1/idea/load',
     authController.authenticateToken,
     async (req, res, next) => {
         try {
