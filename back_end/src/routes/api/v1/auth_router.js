@@ -1,6 +1,5 @@
 import express from 'express';
 import AuthController from '../../../controllers/auth_controller.js';
-import User from '../../../models/user.js';
 import jwt from 'jsonwebtoken';
 
 const authRouter = express.Router();

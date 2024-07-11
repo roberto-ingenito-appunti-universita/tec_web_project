@@ -1,1 +1,14 @@
-<button (click)="signOut()">signout</button>
+<body>
+  @for (item of items; track $index) {
+  <div class="idea-container">
+    <p class="title">{{ item.title }}</p>
+    <p class="description">{{ item.description }}</p>
+    <div class="bottom-bar">
+      <div class="thumb thumb-up-fill"></div>
+      <div class="thumb thumb-down-outline"></div>
+    </div>
+  </div>
+  } @empty {
+  <p>niente</p>
+  }
+</body>

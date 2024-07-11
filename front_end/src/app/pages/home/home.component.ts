@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { Component } from '@angular/core';
+import { Idea } from '../../model/idea.type';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  authService = inject(AuthService)
+  items: Idea[] = [
+    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
+    ...Array(100).fill({ createdAt: new Date(), description: "desc", title: "title", id: 1 })
+  ];
 
-  signOut() { this.authService.signOut(); }
 }
