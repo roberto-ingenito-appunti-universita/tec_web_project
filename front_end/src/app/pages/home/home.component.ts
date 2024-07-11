@@ -9,25 +9,6 @@ import { Idea } from '../../model/idea.type';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  items: Idea[] = [
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaaaaaaaaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaa", title: "aaaa", id: 1 },
-    { createdAt: new Date(), description: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", title: "aaaa", id: 1 },
-  ];
+  items: Idea[] = [];
 
 }
