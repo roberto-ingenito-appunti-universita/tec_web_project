@@ -1,8 +1,9 @@
 // nodemon --exec node src/index.js
 
 import express from "express";
-import userRouter from "./routes/api/v1/user_router.js";
 import authRouter from "./routes/api/v1/auth_router.js";
+import userRouter from "./routes/api/v1/user_router.js";
+import ideaRouter from "./routes/api/v1/idea_router.js";
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -17,6 +18,7 @@ app.use(express.json())
 /* routes */
 app.use(userRouter);
 app.use(authRouter);
+app.use(ideaRouter);
 
 app.listen(PORT);
 console.log('server started');
