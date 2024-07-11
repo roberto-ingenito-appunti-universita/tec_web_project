@@ -15,7 +15,7 @@ authRouter.post(
             });
 
             if (user) {
-                const token = jwt.sign({ username: req.body.username }, process.env.SECRET_KEY, { expiresIn: "1h" });
+                const token = jwt.sign({ username: req.body.username }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
                 res.status(200).json({ user: user, token: token });
             } else {
                 res.status(401).json({ message: 'InvalidCredential' })
@@ -41,7 +41,7 @@ authRouter.post(
                 lastName: req.body.lastName,
             });
 
-            const token = jwt.sign({ username: req.body.username }, process.env.SECRET_KEY, { expiresIn: "1h" });
+            const token = jwt.sign({ username: req.body.username }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
 
             res.status(200).json({ user: newUser, token: token });
         } catch (error) {
@@ -53,5 +53,22 @@ authRouter.post(
         }
     }
 )
+
+authRouter.post(
+    '/api/v1/auth/refresh-token',
+    async (req, res, next) => {
+        try {
+            const token = jwt.sign({ username: req.body.username }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
+            res.status(200).json({ token: token });
+        } catch (error) {
+            if (error.name) {
+                res.status(400).json({ message: error.name })
+            } else {
+                res.status(400).json({ message: error })
+            }
+        }
+    }
+)
+
 
 export default authRouter;

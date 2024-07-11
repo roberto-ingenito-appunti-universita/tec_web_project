@@ -29,9 +29,8 @@ export default class AuthController {
 
         if (token == null) return res.sendStatus(401); // Unauthorized
 
-        jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
-            if (err) return res.sendStatus(403); // token forbidden
-            req.user = user;
+        jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
+            if (err) return res.status(403).json({ message: "TokenExpired" }); // token forbidden
             next();
         });
     }

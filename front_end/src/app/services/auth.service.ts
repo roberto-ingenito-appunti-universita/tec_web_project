@@ -7,6 +7,7 @@ import LocalStorageKeys from '../local_storage_keys';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private apiUrl = 'http://localhost:3000/api/v1/auth';
+    private httpOptions = { headers: { "Content-Type": "application/json" } };
 
     constructor(private http: HttpClient, private router: Router) { }
 
@@ -20,7 +21,7 @@ export class AuthService {
         this.http.post<LoginResponse>(
             `${this.apiUrl}/signup`, // url
             { username: username, password: password, firstName: firstName, lastName: lastName }, // body 
-            { headers: { "Content-Type": "application/json" } }
+            this.httpOptions
         ).subscribe({
             next: (response) => {
                 localStorage.setItem(LocalStorageKeys.jwtToken, response.token);
@@ -40,7 +41,7 @@ export class AuthService {
         this.http.post<LoginResponse>(
             `${this.apiUrl}/signin`, // url
             { username: username, password: password }, // body 
-            { headers: { "Content-Type": "application/json" } }
+            this.httpOptions
         ).subscribe({
             next: (response) => {
                 localStorage.setItem(LocalStorageKeys.jwtToken, response.token);
