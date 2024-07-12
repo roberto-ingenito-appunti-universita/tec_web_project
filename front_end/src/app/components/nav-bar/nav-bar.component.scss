@@ -4,9 +4,9 @@ nav {
   position: fixed;
   top: 0px;
   z-index: 1;
-
   /* colors */
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
   color: $primary500;
 
   /* size */
