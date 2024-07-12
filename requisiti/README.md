@@ -20,7 +20,7 @@
 - Funzionalità:
     - upvote (+1) / downvote (-1)
         - l'utente può assegnare un singolo voto, upvote oppure downvote
-        - l'utente può assegnare un voto solo alle idee proposte da altri
+        - l'utente può assegnare un voto SOLO alle idee proposte da altri
 ### COMMENTO
 - Campi:
 - Funzionalità:
@@ -31,7 +31,7 @@ Pagina *scrollable* dove vengono mostrate le idee.
 
 Il sistema mostra le idee che hanno avuto il più alto numero di upvote e downvote, e hanno un saldo complessivo di upvote e downvote prossimo allo zero. 
 <br/>
-Ossia l'ordinamento viene fatto per `(#upvote + #downvote)` decrescente poi per `(#upvote - #downvote)` decrescente
+Ossia l'ordinamento viene fatto prima per `abs(#upvote - #downvote)` crescente e poi per `(#upvote + #downvote)` decrescente.
 
 Le idee sono paginate, con 10 elementi per pagina.
 
