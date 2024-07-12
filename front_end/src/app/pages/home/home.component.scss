@@ -1,20 +1,18 @@
 @import "../../styles/theme_variables.scss";
 
-$idea-container-max-width: 600px;
+$idea-container-max-width: 700px;
 $idea-container-min-width: 260px;
 
 body {
   /* size */
-  width: calc(100vw - (2 * 15%));
-  margin: 52px 15%;
+  width: calc(100vw - (2 * 10%));
+  margin: 52px 10%;
   padding-top: 32px;
 
   /* Alignments */
+  display: grid;
+  grid-template-columns: auto auto;
   justify-content: center;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   gap: 48px;
 }
 
@@ -27,12 +25,12 @@ p {
   background-color: $primary200;
   color: $primary600;
 
-  max-width: $idea-container-max-width;
   width: calc(100% - 24px);
-  min-width: $idea-container-min-width;
-  border-radius: 12px;
-
   padding: 12px;
+  max-width: $idea-container-max-width;
+  min-width: $idea-container-min-width;
+
+  border-radius: 12px;
 
   display: flex;
   flex-direction: column;
@@ -79,6 +77,20 @@ p {
 .thumb-up-outline {
   background: $primary700;
   mask-image: url("/assets/icons/like-outline.svg");
+}
+
+@media (max-width: 1200px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .idea-container {
+    align-self: center;
+    max-width: none;
+    width: calc(100% - 24px);
+  }
 }
 
 @media (max-width: 600px) {
