@@ -1,12 +1,13 @@
 <body>
-  @for (item of items; track $index) {
+  @for (idea of ideas; track $index) {
   <div class="idea-container">
-    <p class="title">{{ item.title }}</p>
-    <p class="description">{{ item.description }}</p>
+    <p class="title">{{ idea.title }}</p>
+    <p class="description">{{ idea.description }}</p>
     <div class="bottom-bar">
       <div class="thumb thumb-up-fill"></div>
       <div class="thumb thumb-down-outline"></div>
     </div>
+    <button (click)="deleteIdea(idea)">click</button>
   </div>
   } @empty {
   <p>Nessuno ha ancora avuto l'ispirazione :(</p>

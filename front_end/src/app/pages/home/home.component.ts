@@ -10,11 +10,18 @@ import { IdeaService } from '../../services/idea.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  items: Idea[] = [];
+  ideas: Idea[] = [];
   ideaService = inject(IdeaService);
 
   ngOnInit() {
-    this.ideaService.getIdea().then((value) => { this.items.push(...value) });
+    this.ideaService.getIdea().then((value) => { this.ideas.push(...value) });
+  }
+
+  deleteIdea(idea: Idea): void {
+    const index = this.ideas.indexOf(idea);
+    if (index > -1) {
+      this.ideas.splice(index, 1);
+    }
   }
 
 }
