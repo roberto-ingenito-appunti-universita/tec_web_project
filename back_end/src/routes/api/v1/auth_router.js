@@ -4,8 +4,10 @@ import jwt from 'jsonwebtoken';
 
 const authRouter = express.Router();
 
+const path = "/api/v1/auth";
+
 authRouter.post(
-    '/api/v1/auth/signin',
+    `${path}/signin`,
     async (req, res, next) => {
         try {
             const user = await new AuthController().signin({
@@ -30,7 +32,7 @@ authRouter.post(
 )
 
 authRouter.post(
-    '/api/v1/auth/signup',
+    `${path}/signup`,
     async (req, res, next) => {
         try {
             const newUser = await new AuthController().signup({
@@ -54,7 +56,7 @@ authRouter.post(
 )
 
 authRouter.post(
-    '/api/v1/auth/refresh-token',
+    `${path}/refresh-token`,
     async (req, res, next) => {
         try {
             const token = jwt.sign({ username: req.body.username }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });

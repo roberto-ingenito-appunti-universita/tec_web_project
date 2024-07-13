@@ -21,12 +21,8 @@ async function getToken() {
 
     if (token) {
         const decodedToken = jwtDecode(token);
-
         const expirationDate = new Date((decodedToken.exp ?? 0) * 1000);
-
-        // data attuale meno mezzo minuto, cosi da avere un margine di tempo tra le richieste, 
-        // potrebbe capitare che durante il controllo il token risulta valido ma scade durante l'invio della richiesta al server
-        const currentDate = new Date(new Date().getTime() - 30000);
+        const currentDate = new Date();
 
         if (currentDate > expirationDate) { // is token expired
             const user: User = JSON.parse(localStorage.getItem(LocalStorageKeys.userData)!);

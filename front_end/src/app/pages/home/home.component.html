@@ -1,13 +1,34 @@
 <body>
-  @for (idea of ideas; track $index) {
+  @for (idea of ideas; track idea.id) {
   <div class="idea-container">
     <p class="title">{{ idea.title }}</p>
     <p class="description">{{ idea.description }}</p>
     <div class="bottom-bar">
-      <div class="thumb thumb-up-fill"></div>
-      <div class="thumb thumb-down-outline"></div>
+      <div (click)="upVote($index)">
+        <div
+          [className]="
+            'thumb ' +
+            (idea.is_up_vote ?? false ? 'thumb-up-fill' : 'thumb-up-outline')
+          "
+        ></div>
+        {{ idea.up_vote_quantity }}
+      </div>
+      <div (click)="downVote($index)">
+        <div
+          [className]="
+            'thumb ' +
+            (!(idea.is_up_vote ?? true)
+              ? 'thumb-down-fill'
+              : 'thumb-down-outline')
+          "
+        ></div>
+        {{ idea.down_vote_quantity }}
+      </div>
+      <div>
+        <div class="comment"></div>
+        {{ idea.comment_quantity }}
+      </div>
     </div>
-    <button (click)="deleteIdea(idea)">click</button>
   </div>
   } @empty {
   <p>Nessuno ha ancora avuto l'ispirazione :(</p>
