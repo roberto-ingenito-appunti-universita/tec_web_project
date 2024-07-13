@@ -31,7 +31,7 @@ Pagina *scrollable* dove vengono mostrate le idee.
 
 Il sistema mostra le idee che hanno avuto il più alto numero di upvote e downvote, e hanno un saldo complessivo di upvote e downvote prossimo allo zero. 
 <br/>
-Ossia l'ordinamento viene fatto prima per `abs(#upvote - #downvote)` crescente e poi per `(#upvote + #downvote)` decrescente.
+Ossia l'ordinamento viene fatto prima per `(#upvote + #downvote)` decrescente e poi per `abs(#upvote - #downvote)` crescente.
 
 Le idee sono paginate, con 10 elementi per pagina.
 
@@ -51,13 +51,4 @@ Ordinamento `(#upvote - #downvote)` decrescente
 
 ## Idea
 Pagina che viene mostrata quando si clicca su un'idea oppure sul tasto "commenti" di un'idea.
-
-# Palette colori
-Primary: #141413
-<br/>
-Secondary: #CC785C
-<br/>
-Tertiary: #6050A6
-<br/>
-Background: #FAFAF8
 
