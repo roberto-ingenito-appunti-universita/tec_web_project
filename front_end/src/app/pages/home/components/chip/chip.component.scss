@@ -1,0 +1,18 @@
+@import "../../../../styles/theme_variables.scss";
+
+p {
+  padding: 4px 8px;
+  border-radius: 8px;
+  user-select: none;
+  cursor: pointer;
+  border: 2px solid $secondary200;
+  color: $secondary600;
+}
+
+.selected {
+  background-color: $secondary200;
+}
+
+.not-selected {
+  background-color: white;
+}

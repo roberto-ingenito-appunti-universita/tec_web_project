@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { IdeaService } from '../../services/idea.service';
 import { HomePageIdea } from '../../model/home_page_idea.type';
 import { UserService } from '../../services/user.service';
+import { ChipComponent } from "./components/chip/chip.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [ChipComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -15,8 +16,25 @@ export class HomeComponent {
   ideaService = inject(IdeaService);
   userService = inject(UserService);
 
+  sortType: 'default' | 'unpopular' | 'mainstream' = 'default';
+
+  private multiSort<T>(array: T[], comparators: ((a: T, b: T) => number)[]): T[] {
+    return array.sort((a, b) => {
+      for (let comparator of comparators) {
+        const result = comparator(a, b);
+        if (result !== 0) {
+          return result;
+        }
+      }
+      return 0;
+    });
+  }
+
   ngOnInit() {
-    this.ideaService.getIdea().then((value) => { this.ideas.push(...value) });
+    this.ideaService.getIdea().then((value) => {
+      this.ideas.push(...value);
+      this.sortIdeas(this.sortType);
+    });
   }
 
   upVote(index: number) {
@@ -61,5 +79,29 @@ export class HomeComponent {
       this.ideas[index].down_vote_quantity++;
       this.ideas[index].up_vote_quantity--;
     }
+  }
+
+  sortIdeas(type: 'default' | 'unpopular' | 'mainstream') {
+    switch (type) {
+      case 'default':
+        this.sortType = 'default';
+        this.ideas = this.multiSort(this.ideas, [
+          // somma decrescente
+          (a, b) => (b.up_vote_quantity + b.down_vote_quantity) - (a.up_vote_quantity + a.down_vote_quantity),
+
+          // saldo prossimo allo zero crescente
+          (a, b) => Math.abs(a.up_vote_quantity - a.down_vote_quantity) - Math.abs(b.up_vote_quantity - b.down_vote_quantity),
+        ]);
+        break;
+      case 'unpopular':
+        this.sortType = 'unpopular';
+        this.ideas = this.ideas.sort((a, b) => (b.down_vote_quantity - b.up_vote_quantity) - (a.down_vote_quantity - a.up_vote_quantity));
+        break;
+      case 'mainstream':
+        this.sortType = 'mainstream';
+        this.ideas = this.ideas.sort((a, b) => (b.up_vote_quantity - b.down_vote_quantity) - (a.up_vote_quantity - a.down_vote_quantity));
+        break;
+    }
+
   }
 }

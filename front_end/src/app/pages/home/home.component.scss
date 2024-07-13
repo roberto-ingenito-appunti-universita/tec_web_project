@@ -7,8 +7,25 @@ body {
   /* size */
   width: calc(100vw - (2 * 10%));
   margin: 52px 10%;
-  padding-top: 32px;
+  padding-top: 12px;
+}
 
+.sort-bar {
+  /* colors */
+  color: $primary500;
+
+  /* size */
+  margin-bottom: 24px;
+
+  /* alignment */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.ideas-grid {
   /* Alignments */
   display: grid;
   grid-template-columns: auto auto;
@@ -100,7 +117,7 @@ p {
 }
 
 @media (max-width: 1200px) {
-  body {
+  .ideas-grid {
     display: flex;
     flex-direction: column;
     gap: 48px;
