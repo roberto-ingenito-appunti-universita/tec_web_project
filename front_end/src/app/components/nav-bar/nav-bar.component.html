@@ -8,10 +8,16 @@
       <p>Idea!</p>
     </div>
     <img
+      (click)="toggleUserPopup($event)"
       src="assets/icons/profile.svg"
       height="20px"
       width="20px"
       class="profile-button"
     />
   </div>
+  @if (isUserPopupOpen) {
+  <div class="popup" (click)="preventClose($event)">
+    <button (click)="signOut()">SIGN OUT</button>
+  </div>
+  }
 </nav>
