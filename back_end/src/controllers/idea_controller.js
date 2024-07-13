@@ -9,20 +9,16 @@ export default class IdeaController {
     // restituisce un array di oggetti
     async getIdeas(username) {
         return await connection.query(`
-            WITH ideas AS (
-                SELECT 
-                    i.*,
-                    (SELECT count(*) FROM public.vote as v WHERE v."ideaFK" = i.id AND v."isUpvote" = true) as up_vote_quantity,
-                    (SELECT count(*) FROM public.vote as v WHERE v."ideaFK" = i.id AND v."isUpvote" = false) as down_vote_quantity,
-                    (SELECT count(*) FROM public.comment as c WHERE c."ideaFK" = i.id) as comment_quantity,
-                    (SELECT v."isUpvote" FROM public.vote as v WHERE v."userFK" = '${username}' AND v."ideaFK" = i.id) as is_up_vote
-                FROM 
-                    public.idea as i
-            )
-            SELECT *
-            FROM ideas
+            SELECT 
+                i.*,
+                (SELECT count(*) FROM public.vote as v WHERE v."ideaFK" = i.id AND v."isUpvote" = true) as up_vote_quantity,
+                (SELECT count(*) FROM public.vote as v WHERE v."ideaFK" = i.id AND v."isUpvote" = false) as down_vote_quantity,
+                (SELECT count(*) FROM public.comment as c WHERE c."ideaFK" = i.id) as comment_quantity,
+                (SELECT v."isUpvote" FROM public.vote as v WHERE v."userFK" = '${username}' AND v."ideaFK" = i.id) as is_up_vote
+            FROM 
+                public.idea as i
             ORDER BY 
-                "createdAt" DESC
+                i."createdAt" DESC
             LIMIT 500;
         `,
             { type: QueryTypes.SELECT }
