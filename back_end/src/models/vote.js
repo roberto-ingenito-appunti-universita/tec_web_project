@@ -4,15 +4,19 @@ import connection from "../config/db_connection.js";
 const Vote = connection.define(
     'vote',
     {
-        id: {
-            type: DataTypes.BIGINT,
-            primaryKey: true,
-            allowNull: false,
-            autoIncrement: true,
-        },
         isUpvote: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
+        },
+        ideaFK: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+        },
+        userFK: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+            primaryKey: true,
         },
     },
     {
