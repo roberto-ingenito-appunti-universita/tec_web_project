@@ -1,9 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { IdeaService } from '../../services/idea.service';
 import { HomePageIdea } from '../../model/home_page_idea.type';
-import { Idea } from '../../model/idea.type';
-import { User } from '../../model/user.type';
-import LocalStorageKeys from '../../local_storage_keys';
 import { UserService } from '../../services/user.service';
 
 @Component({
