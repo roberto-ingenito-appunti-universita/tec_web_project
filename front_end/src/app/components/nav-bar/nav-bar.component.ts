@@ -1,5 +1,6 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,8 +12,14 @@ import { AuthService } from '../../services/auth.service';
 export class NavBarComponent {
   isUserPopupOpen = false;
   authService = inject(AuthService);
-
+  router = inject(Router);
+  
   signOut() { this.authService.signOut(); }
+
+  refreshHomePage() {
+    this.router.navigate(['home']);
+    window.location.reload();
+  }
 
   toggleUserPopup(event: MouseEvent): void {
     this.isUserPopupOpen = !this.isUserPopupOpen;
