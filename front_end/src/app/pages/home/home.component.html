@@ -20,7 +20,7 @@
     @for (idea of ideas; track idea.id) {
     <div class="idea-container">
       <p class="title">{{ idea.title }}</p>
-      <p class="description">{{ idea.description }}</p>
+      <div class="description" [innerHTML]="idea.description"></div>
       <div class="bottom-bar">
         <div (click)="upVote($index)">
           <div
@@ -46,8 +46,8 @@
           <div class="comment"></div>
           {{ idea.comment_quantity }}
         </div>
-        <div style="flex: 1"></div>
-        <p style="font-size: 14px; align-self: center;">{{ idea.userFK }}</p>
+        <div style="flex: 1; cursor: auto"></div>
+        <p style="font-size: 14px; align-self: center">{{ idea.userFK }}</p>
       </div>
     </div>
     } @empty {

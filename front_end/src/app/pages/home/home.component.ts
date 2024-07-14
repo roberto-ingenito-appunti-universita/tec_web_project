@@ -1,17 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { IdeaService } from '../../services/idea.service';
 import { HomePageIdea } from '../../model/home_page_idea.type';
 import { UserService } from '../../services/user.service';
 import { ChipComponent } from "./components/chip/chip.component";
+import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ChipComponent],
+  imports: [ChipComponent, RichTextEditorModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   ideas: HomePageIdea[] = [];
   ideaService = inject(IdeaService);
   userService = inject(UserService);

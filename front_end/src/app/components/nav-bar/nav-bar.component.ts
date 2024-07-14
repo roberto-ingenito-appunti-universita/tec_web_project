@@ -17,8 +17,14 @@ export class NavBarComponent {
 
   signOut() { this.authService.signOut(); }
 
-  refreshHomePage() {
-    this.router.navigate(['home']).then(() => { window.location.reload(); });
+  navigateToHomePage() {
+    const isHomePage = this.router.url === '/home';
+
+    if (isHomePage) {
+      window.location.reload();
+    } else {
+      this.router.navigate(['home']);
+    }
   }
 
   navigate() {
