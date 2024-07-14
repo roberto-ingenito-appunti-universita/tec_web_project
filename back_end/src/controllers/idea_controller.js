@@ -79,4 +79,12 @@ export default class IdeaController {
             });
         }
     }
+
+    async publishIdea({ username, title, description }) {
+        await Idea.create({
+            userFK: username,
+            title: title,
+            description: description,
+        });
+    }
 }

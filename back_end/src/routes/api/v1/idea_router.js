@@ -54,6 +54,23 @@ ideaRouter.post(
     }
 )
 
+ideaRouter.post(
+    `${path}/publish`,
+    authController.authenticateToken,
+    async (req, res, next) => {
+        try {
+            await ideaController.publishIdea({
+                username: req.body.username,
+                title: req.body.title,
+                description: req.body.description,
+            });
+            res.status(200).json({});
+        } catch (error) {
+            res.status(404).json({});;
+        }
+    }
+)
+
 export default ideaRouter;
 
 

@@ -8,6 +8,7 @@ import { HomePageIdea } from '../model/home_page_idea.type';
 
 @Injectable({ providedIn: 'root' })
 export class IdeaService {
+
     private apiUrl = 'http://localhost:3000/api/v1/idea';
     private httpOptions = { headers: { "Content-Type": "application/json" } };
     private userService = inject(UserService);
@@ -47,5 +48,17 @@ export class IdeaService {
             this.httpOptions
         );
         await firstValueFrom(apiCall);
+    }
+
+
+    async publishIdea(title: string, description: string) {
+        const user = this.userService.getUser();
+        const apiCall = this.http.post(
+            `${this.apiUrl}/publish`,
+            { username: user.username, title: title, description: description },
+            this.httpOptions
+        );
+        await firstValueFrom(apiCall);
+
     }
 }
