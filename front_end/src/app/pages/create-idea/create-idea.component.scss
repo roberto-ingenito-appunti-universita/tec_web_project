@@ -1,0 +1,15 @@
+body {
+  /* size */
+  width: calc(100vw - (2 * 10%));
+  margin: 52px 10%;
+}
+
+@media (max-width: 600px) {
+  body {
+    width: calc(100vw - (2 * 12px));
+    margin: 52px 12px;
+  }
+}
+#defaultRTE{
+  z-index: 0;
+}

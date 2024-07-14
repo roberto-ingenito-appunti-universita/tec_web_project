@@ -3,10 +3,12 @@
     <h1>HiveMind</h1>
   </div>
   <div>
-    <div class="new-idea-container">
+    @if (router.url !== "/create-idea") {
+    <div class="new-idea-container" (click)="navigate()">
       <img src="assets/icons/write.svg" height="28px" width="28px" />
       <p>Idea!</p>
     </div>
+    }
     <img
       (click)="toggleUserPopup($event)"
       src="assets/icons/profile.svg"

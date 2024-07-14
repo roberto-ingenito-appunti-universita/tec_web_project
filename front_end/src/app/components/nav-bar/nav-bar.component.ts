@@ -10,15 +10,19 @@ import { Router } from '@angular/router';
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
+
   isUserPopupOpen = false;
   authService = inject(AuthService);
   router = inject(Router);
-  
+
   signOut() { this.authService.signOut(); }
 
   refreshHomePage() {
-    this.router.navigate(['home']);
-    window.location.reload();
+    this.router.navigate(['home']).then(() => { window.location.reload(); });
+  }
+
+  navigate() {
+    this.router.navigate(['create-idea']);
   }
 
   toggleUserPopup(event: MouseEvent): void {
