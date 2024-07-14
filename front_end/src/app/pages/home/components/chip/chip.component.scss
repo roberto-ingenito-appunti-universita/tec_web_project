@@ -7,12 +7,18 @@ p {
   cursor: pointer;
   border: 2px solid $secondary200;
   color: $secondary600;
+  transition: 200ms ease-in-out;
 }
 
 .selected {
   background-color: $secondary200;
+  border: 2px solid $secondary400;
 }
 
 .not-selected {
   background-color: white;
+}
+
+.not-selected:hover {
+  background-color: $secondary100;
 }
