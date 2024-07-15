@@ -3,6 +3,7 @@ import { IdeaService } from '../../services/idea.service';
 import { UserService } from '../../services/user.service';
 import { ChipComponent } from "./components/chip/chip.component";
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-
+  sanitizer = inject(DomSanitizer);
   ideaService = inject(IdeaService);
   userService = inject(UserService);
   router = inject(Router);

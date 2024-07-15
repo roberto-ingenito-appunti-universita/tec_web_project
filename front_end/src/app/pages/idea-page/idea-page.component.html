@@ -3,7 +3,8 @@
     @if (idea) {
     <div class="idea-container">
       <p class="title">{{ idea.title }}</p>
-      <div class="description" [innerHTML]="idea.description"></div>
+      <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(idea.description)"></div>
+    
       <div style="display: flex; justify-content: end">
         <p style="font-size: 14px">{{ idea.userFK }}</p>
       </div>
@@ -23,7 +24,9 @@
     @for (item of comments; track item.id) {
     <div class="comment-container">
       <div [innerText]="item.text"></div>
-      <p ><i>{{ item.userFK }}</i></p>
+      <p>
+        <i>{{ item.userFK }}</i>
+      </p>
     </div>
 
     }

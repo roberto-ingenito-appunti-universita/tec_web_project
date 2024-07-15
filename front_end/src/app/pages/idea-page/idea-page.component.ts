@@ -1,9 +1,10 @@
-import { Component, ElementRef, inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { HomePageIdea } from '../../model/home_page_idea.type';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IdeaService } from '../../services/idea.service';
 import { CommentService } from '../../services/comment.service';
 import { Comment } from '../../model/comment.type';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-idea-page',
@@ -13,27 +14,24 @@ import { Comment } from '../../model/comment.type';
   styleUrl: './idea-page.component.scss'
 })
 export class IdeaPageComponent implements OnInit {
-
   router = inject(Router);
   route = inject(ActivatedRoute);
   ideaService = inject(IdeaService);
   commentService = inject(CommentService);
+  sanitizer = inject(DomSanitizer);
 
   public idea: HomePageIdea | null = null;
   private ideaIndex: number | undefined;
 
   public comments: Comment[] = [];
 
-
   @ViewChild('comment')
   public comment!: ElementRef;
 
   async ngOnInit() {
-
     this.route.queryParams.subscribe(params => {
       this.ideaIndex = params['index'];
     });
-
 
     if (this.ideaService.ideas.length == 0) {
       await this.ideaService.loadIdeas();

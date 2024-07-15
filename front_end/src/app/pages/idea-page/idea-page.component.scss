@@ -126,3 +126,18 @@ button:disabled {
     margin: 52px 12px;
   }
 }
+
+.e-toolbar-wrapper {
+  height: 0px !important;
+}
+
+.e-control.e-richtexteditor {
+  border: none;
+  // background-color: transparent;
+  background-color: red;
+  font-size: 16px;
+}
+
+.e-control.e-richtexteditor .e-rte-content {
+  border: none;
+}

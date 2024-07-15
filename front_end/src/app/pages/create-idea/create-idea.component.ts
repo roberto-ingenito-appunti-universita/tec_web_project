@@ -31,7 +31,8 @@ export class CreateIdeaComponent {
       'JustifyLeft', 'JustifyCenter', 'JustifyRight', '|',
       'OrderedList', 'UnorderedList', '|',
       'Indent', 'Outdent', '|',
-      'Undo', 'Redo',
+      'Undo', 'Redo', '|',
+      'CreateLink'
     ],
     itemConfigs: {}
   };
