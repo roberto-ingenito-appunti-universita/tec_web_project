@@ -1,1 +1,17 @@
-<p>idea-page works!</p>
+<body>
+  <div class="left-column">
+    @if (idea) {
+    <div class="idea-container">
+      <p class="title">{{ idea.title }}</p>
+      <div class="description" [innerHTML]="idea.description"></div>
+      <div style="display: flex; justify-content: end">
+        <p style="font-size: 14px">{{ idea.userFK }}</p>
+      </div>
+    </div>
+    }
+    <p>del testo</p>
+  </div>
+  <div class="right-column">
+    del testo 2
+  </div>
+</body>

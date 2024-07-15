@@ -1,6 +1,7 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { HomePageIdea } from '../../model/home_page_idea.type';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IdeaService } from '../../services/idea.service';
 
 @Component({
   selector: 'app-idea-page',
@@ -11,12 +12,28 @@ import { Router } from '@angular/router';
 })
 export class IdeaPageComponent implements OnInit {
   router = inject(Router);
+  route = inject(ActivatedRoute);
+  ideaService = inject(IdeaService);
 
-  public idea!: HomePageIdea;
+  public idea: HomePageIdea | null = null;
 
 
-  ngOnInit() {
-    console.log(this.router.getCurrentNavigation()?.extras);
+  async ngOnInit() {
+    let index: number | undefined;
 
+    this.route.queryParams.subscribe(params => {
+      index = params['index'];
+    });
+
+    if (this.ideaService.ideas.length == 0) {
+      await this.ideaService.loadIdeas();
+    }
+
+    if (!(index !== undefined && Number.isInteger(Number(index)) && index >= 0 && index < this.ideaService.ideas.length)) {
+      this.router.navigate(['home']);
+    } else {
+      this.idea = this.ideaService.ideas[index];
+    }
   }
+
 }

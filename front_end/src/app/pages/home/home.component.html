@@ -2,22 +2,22 @@
   <div class="sort-bar">
     <app-chip
       label="Controverse"
-      [selected]="sortType === 'default'"
+      [selected]="ideaService.sortType === 'default'"
       (click)="sortIdeas('default')"
     ></app-chip>
     <app-chip
       label="Unpopular"
-      [selected]="sortType === 'unpopular'"
+      [selected]="ideaService.sortType === 'unpopular'"
       (click)="sortIdeas('unpopular')"
     ></app-chip>
     <app-chip
       label="Mainstream"
-      [selected]="sortType === 'mainstream'"
+      [selected]="ideaService.sortType === 'mainstream'"
       (click)="sortIdeas('mainstream')"
     ></app-chip>
   </div>
   <div class="ideas-grid">
-    @for (idea of ideas; track idea.id) {
+    @for (idea of ideaService.ideas; track idea.id) {
     <div class="idea-container">
       <p class="title">{{ idea.title }}</p>
       <div class="description" [innerHTML]="idea.description"></div>

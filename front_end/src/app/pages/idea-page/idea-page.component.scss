@@ -1,0 +1,66 @@
+@import "../../styles/theme_variables.scss";
+
+$idea-container-max-width: 700px;
+$idea-container-min-width: 260px;
+
+body {
+  /* size */
+  width: calc(100vw - (2 * 10%));
+  margin: 52px 10%;
+  padding-top: 12px;
+
+  line-break: auto;
+
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+}
+
+.left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.idea-container {
+  background-color: $primary200;
+  color: $primary600;
+
+  width: calc(100% - 24px);
+  padding: 12px;
+
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.idea-container .title {
+  font-weight: bold;
+  font-size: 18px;
+}
+.idea-container .description {
+  font-size: 16px;
+}
+
+@media (max-width: 1200px) {
+  body {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    width: calc(100vw - (2 * 12px));
+    margin: 52px 12px;
+  }
+}

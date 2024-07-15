@@ -11,8 +11,8 @@ export const routes: Routes = [
     { path: "signin", component: SigninComponent, canActivate: [AuthRedirectGuard] },
     { path: "signup", component: SignupComponent, canActivate: [AuthRedirectGuard] },
     { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
-    { path: "create-idea", component: CreateIdeaComponent, canActivate: [AuthGuard] },
     { path: "idea", component: IdeaPageComponent, canActivate: [AuthGuard] },
+    { path: "create-idea", component: CreateIdeaComponent, canActivate: [AuthGuard] },
     { path: "", redirectTo: "/signin", pathMatch: "full" },
     { path: '**', component: PageNotFoundComponent },
 ];

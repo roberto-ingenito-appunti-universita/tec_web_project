@@ -26,8 +26,7 @@ export class IdeaService {
                 { params: { username: user.username } }
             )
         );
-
-        return this.ideas;
+        this.sortIdeas(this.sortType);
     }
 
     async upVote(idea: Idea) {
@@ -58,5 +57,42 @@ export class IdeaService {
             this.httpOptions
         );
         await firstValueFrom(apiCall);
+    }
+
+    sortIdeas(type: 'default' | 'unpopular' | 'mainstream') {
+        this.sortType = type;
+
+        switch (type) {
+            case 'default':
+                this.sortType = 'default';
+                this.ideas = this.multiSort(this.ideas, [
+                    // somma decrescente
+                    (a, b) => (b.up_vote_quantity + b.down_vote_quantity) - (a.up_vote_quantity + a.down_vote_quantity),
+
+                    // saldo prossimo allo zero crescente
+                    (a, b) => Math.abs(a.up_vote_quantity - a.down_vote_quantity) - Math.abs(b.up_vote_quantity - b.down_vote_quantity),
+                ]);
+                break;
+            case 'unpopular':
+                this.sortType = 'unpopular';
+                this.ideas = this.ideas.sort((a, b) => (b.down_vote_quantity - b.up_vote_quantity) - (a.down_vote_quantity - a.up_vote_quantity));
+                break;
+            case 'mainstream':
+                this.sortType = 'mainstream';
+                this.ideas = this.ideas.sort((a, b) => (b.up_vote_quantity - b.down_vote_quantity) - (a.up_vote_quantity - a.down_vote_quantity));
+                break;
+        }
+    }
+
+    private multiSort<T>(array: T[], comparators: ((a: T, b: T) => number)[]): T[] {
+        return array.sort((a, b) => {
+            for (let comparator of comparators) {
+                const result = comparator(a, b);
+                if (result !== 0) {
+                    return result;
+                }
+            }
+            return 0;
+        });
     }
 }
