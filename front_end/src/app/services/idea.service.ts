@@ -4,12 +4,13 @@ import { Idea } from '../model/idea.type';
 import { firstValueFrom } from 'rxjs';
 import { UserService } from './user.service';
 import { HomePageIdea } from '../model/home_page_idea.type';
+import { BackendService } from './backend.service';
 
 @Injectable({ providedIn: 'root' })
 export class IdeaService {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private backendService: BackendService) { }
 
-    private apiUrl = 'http://localhost:3000/api/v1/idea';
+    private apiUrl = `${this.backendService.apiUrl}/idea`;
     private httpOptions = { headers: { "Content-Type": "application/json" } };
     private userService = inject(UserService);
 

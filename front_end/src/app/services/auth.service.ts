@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginResponse } from '../model/login_response.type';
 import LocalStorageKeys from '../local_storage_keys';
+import { BackendService } from './backend.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private apiUrl = 'http://localhost:3000/api/v1/auth';
+    private apiUrl = `${this.backendService.apiUrl}/auth`;
     private httpOptions = { headers: { "Content-Type": "application/json" } };
 
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router, private backendService: BackendService) { }
 
     signUp(
         username: string,

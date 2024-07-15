@@ -27,7 +27,6 @@ commentRouter.post(
     authController.authenticateToken,
     async (req, res, next) => {
         try {
-            console.log(req.body);
             const newComment = await commentController.publishComment({
                 ideaFK: req.body.ideaID,
                 userFK: req.body.username,

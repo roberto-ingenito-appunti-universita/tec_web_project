@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { UserService } from './user.service';
 import { Comment } from '../model/comment.type';
+import { BackendService } from './backend.service';
 
 @Injectable({ providedIn: 'root' })
 export class CommentService {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private backendService: BackendService) { }
 
-    private apiUrl = 'http://localhost:3000/api/v1/comment';
+    private apiUrl = `${this.backendService.apiUrl}/comment`;
     private httpOptions = { headers: { "Content-Type": "application/json" } };
     private userService = inject(UserService);
 
