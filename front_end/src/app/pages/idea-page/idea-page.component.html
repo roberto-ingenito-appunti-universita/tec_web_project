@@ -21,7 +21,11 @@
   </div>
   <div class="right-column">
     @for (item of comments; track item.id) {
-    <p>{{ item.text }}</p>
+    <div class="comment-container">
+      <div [innerText]="item.text"></div>
+      <p ><i>{{ item.userFK }}</i></p>
+    </div>
+
     }
   </div>
 </body>

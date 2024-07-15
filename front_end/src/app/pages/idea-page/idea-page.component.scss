@@ -27,7 +27,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 20px;
 }
 
 .idea-container {
@@ -97,6 +97,21 @@ button:disabled {
   background-color: rgb(200, 200, 200);
   color: rgb(100, 100, 100);
   font-size: 12px;
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  background-color: $secondary200;
+  color: $secondary800;
+  padding: 8px;
+  border-radius: 8px;
+  gap: 12px;
+}
+
+.comment-container p {
+  font-size: 14px;
+  align-self: flex-end;
 }
 
 @media (max-width: 1200px) {
