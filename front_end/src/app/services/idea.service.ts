@@ -8,26 +8,27 @@ import { HomePageIdea } from '../model/home_page_idea.type';
 
 @Injectable({ providedIn: 'root' })
 export class IdeaService {
+    constructor(private http: HttpClient, private router: Router) { }
 
     private apiUrl = 'http://localhost:3000/api/v1/idea';
     private httpOptions = { headers: { "Content-Type": "application/json" } };
     private userService = inject(UserService);
 
-    constructor(private http: HttpClient, private router: Router) { }
 
+    public ideas: HomePageIdea[] = [];
+    public sortType: 'default' | 'unpopular' | 'mainstream' = 'default';
 
-
-    async getIdea() {
+    async loadIdeas() {
         const user = this.userService.getUser();
 
-        const ideas = await firstValueFrom(
+        this.ideas = await firstValueFrom(
             this.http.get<HomePageIdea[]>(
                 `${this.apiUrl}/load`,
                 { params: { username: user.username } }
             )
         );
 
-        return ideas;
+        return this.ideas;
     }
 
     async upVote(idea: Idea) {
@@ -50,7 +51,6 @@ export class IdeaService {
         await firstValueFrom(apiCall);
     }
 
-
     async publishIdea(title: string, description: string) {
         const user = this.userService.getUser();
         const apiCall = this.http.post(
@@ -59,6 +59,5 @@ export class IdeaService {
             this.httpOptions
         );
         await firstValueFrom(apiCall);
-
     }
 }

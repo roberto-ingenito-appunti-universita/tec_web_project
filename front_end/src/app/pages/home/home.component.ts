@@ -19,23 +19,19 @@ export class HomeComponent implements OnInit {
 
   sortType: 'default' | 'unpopular' | 'mainstream' = 'default';
 
-  private multiSort<T>(array: T[], comparators: ((a: T, b: T) => number)[]): T[] {
-    return array.sort((a, b) => {
-      for (let comparator of comparators) {
-        const result = comparator(a, b);
-        if (result !== 0) {
-          return result;
-        }
-      }
-      return 0;
-    });
-  }
-
   ngOnInit() {
-    this.ideaService.getIdea().then((value) => {
-      this.ideas.push(...value);
+    const ideas = this.ideaService.ideas;
+    this.sortType = this.ideaService.sortType;
+
+    if (ideas.length == 0) {
+      this.ideaService.loadIdeas().then((value) => {
+        this.ideas.push(...value);
+        this.sortIdeas(this.sortType);
+      });
+    } else {
+      this.ideas.push(...ideas);
       this.sortIdeas(this.sortType);
-    });
+    }
   }
 
   upVote(index: number) {
@@ -83,6 +79,8 @@ export class HomeComponent implements OnInit {
   }
 
   sortIdeas(type: 'default' | 'unpopular' | 'mainstream') {
+    this.ideaService.sortType = type;
+    
     switch (type) {
       case 'default':
         this.sortType = 'default';
@@ -103,6 +101,17 @@ export class HomeComponent implements OnInit {
         this.ideas = this.ideas.sort((a, b) => (b.up_vote_quantity - b.down_vote_quantity) - (a.up_vote_quantity - a.down_vote_quantity));
         break;
     }
+  }
 
+  private multiSort<T>(array: T[], comparators: ((a: T, b: T) => number)[]): T[] {
+    return array.sort((a, b) => {
+      for (let comparator of comparators) {
+        const result = comparator(a, b);
+        if (result !== 0) {
+          return result;
+        }
+      }
+      return 0;
+    });
   }
 }
