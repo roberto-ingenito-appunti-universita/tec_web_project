@@ -4,6 +4,7 @@ import { HomePageIdea } from '../../model/home_page_idea.type';
 import { UserService } from '../../services/user.service';
 import { ChipComponent } from "./components/chip/chip.component";
 import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,11 @@ import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
+
   ideas: HomePageIdea[] = [];
   ideaService = inject(IdeaService);
   userService = inject(UserService);
+  router = inject(Router);
 
   sortType: 'default' | 'unpopular' | 'mainstream' = 'default';
 
@@ -32,6 +35,10 @@ export class HomeComponent implements OnInit {
       this.ideas.push(...ideas);
       this.sortIdeas(this.sortType);
     }
+  }
+
+  onCommentClick(index: number) {
+    this.router.navigate(['idea'], { queryParams: { index: index } })
   }
 
   upVote(index: number) {
@@ -80,7 +87,7 @@ export class HomeComponent implements OnInit {
 
   sortIdeas(type: 'default' | 'unpopular' | 'mainstream') {
     this.ideaService.sortType = type;
-    
+
     switch (type) {
       case 'default':
         this.sortType = 'default';

@@ -42,7 +42,7 @@
           ></div>
           {{ idea.down_vote_quantity }}
         </div>
-        <div>
+        <div (click)="onCommentClick($index)">
           <div class="comment"></div>
           {{ idea.comment_quantity }}
         </div>
