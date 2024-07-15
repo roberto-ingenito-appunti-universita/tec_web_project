@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { Idea } from '../model/idea.type';
 import { firstValueFrom } from 'rxjs';
 import { UserService } from './user.service';
@@ -8,7 +7,7 @@ import { HomePageIdea } from '../model/home_page_idea.type';
 
 @Injectable({ providedIn: 'root' })
 export class IdeaService {
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient) { }
 
     private apiUrl = 'http://localhost:3000/api/v1/idea';
     private httpOptions = { headers: { "Content-Type": "application/json" } };
