@@ -1,15 +1,19 @@
 import { Comment } from "../models/model_config.js";
 
 export default class CommentController {
-    getComments(ideaID) { 
-        return Comment.findAll({ where: { ideaFK: ideaID } }) 
+    getComments(ideaID) {
+        return Comment.findAll({
+            where: { ideaFK: ideaID },
+            order: [['createdAt', 'DESC']],
+            limit: 1000,
+        })
     }
 
-    async publishComment({ ideaFK, userFK, title }) {
-        await Comment.create({
+    async publishComment({ ideaFK, userFK, text }) {
+        return await Comment.create({
             ideaFK: ideaFK,
             userFK: userFK,
-            title: title,
+            text: text,
         });
     }
 }

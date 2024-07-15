@@ -14,21 +14,21 @@ export class CommentService {
 
     async loadComments(ideaID: number) {
 
-        const comments = await firstValueFrom( 
-            this.http.get<Comment[]>(`${this.apiUrl}/load/${ideaID}`) 
+        const comments = await firstValueFrom(
+            this.http.get<Comment[]>(`${this.apiUrl}/load/${ideaID}`)
         );
 
         return comments;
     }
 
-    async publishComment({ title, ideaID }: { title: string, ideaID: number }) {
-        const user = this.userService.getUser();
+    async publishComment({ text, ideaID }: { text: string, ideaID: number }) {
+        const username = this.userService.getUser().username;
 
-        const apiCall = this.http.post(
+        const apiCall = this.http.post<Comment>(
             `${this.apiUrl}/publish`,
-            { ideaFK: ideaID, userFK: user.username, title: title, },
+            { ideaID, username, text },
             this.httpOptions
         );
-        await firstValueFrom(apiCall);
+        return await firstValueFrom(apiCall);
     }
 }

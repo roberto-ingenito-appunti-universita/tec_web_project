@@ -20,14 +20,14 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 36px;
 }
 
 .right-column {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 36px;
 }
 
 .idea-container {
@@ -50,6 +50,53 @@ body {
 }
 .idea-container .description {
   font-size: 16px;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid $primary100;
+  background-color: white;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  border-radius: 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  resize: none;
+  height: 200px;
+}
+
+textarea:focus {
+  border-color: $primary600;
+  border-width: 2px;
+  border-radius: 8px;
+  outline: none;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+
+  background-color: $primary200;
+  color: $primary600;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 12px;
+
+  align-self: flex-start;
+  cursor: pointer;
+  transition: 200ms;
+}
+button:hover {
+  background-color: $primary300;
+  color: $primary800;
+}
+button:disabled {
+  background-color: rgb(200, 200, 200);
+  color: rgb(100, 100, 100);
+  font-size: 12px;
 }
 
 @media (max-width: 1200px) {

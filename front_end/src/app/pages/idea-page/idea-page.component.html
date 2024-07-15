@@ -9,9 +9,19 @@
       </div>
     </div>
     }
-    <p>del testo</p>
+    <div>
+      <textarea
+        type="text"
+        [maxLength]="1000"
+        placeholder="Scrivi un tuo parere..."
+        #comment
+      ></textarea>
+      <button (click)="publishComment()">Pubblica commento!</button>
+    </div>
   </div>
   <div class="right-column">
-    del testo 2
+    @for (item of comments; track item.id) {
+    <p>{{ item.text }}</p>
+    }
   </div>
 </body>

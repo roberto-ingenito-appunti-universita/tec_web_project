@@ -27,12 +27,13 @@ commentRouter.post(
     authController.authenticateToken,
     async (req, res, next) => {
         try {
-            await commentController.publishComment({
+            console.log(req.body);
+            const newComment = await commentController.publishComment({
                 ideaFK: req.body.ideaID,
                 userFK: req.body.username,
-                title: req.body.title,
+                text: req.body.text,
             });
-            res.status(200).json({});
+            res.status(200).json(newComment);
         } catch (error) {
             res.status(404).json({});;
         }
