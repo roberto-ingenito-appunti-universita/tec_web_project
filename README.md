@@ -33,17 +33,4 @@ Package Manager: npm 10.8.1
 1. Inizializza il database con `node back_end/src/config/db_init.js`
 
     Successivamente esegui `node back_end/src/config/db_fill.js` per riempire il DB con dati di test.
-
-## Font & Colors
-- Azeret Mono
-- Fragment Mono
-
-https://uicolors.app/create
-
-200 background 600 sopra, colore del testo 900/950
-
-BOTTONE:
-- 500 background
-- 600 hover
-- 700 active
-- disabilitato: 100 background e 400 text
+1. esegui `npm start` in entrambe le cartelle `back_end` e `front_end` per avviare il server e l'applicazione
