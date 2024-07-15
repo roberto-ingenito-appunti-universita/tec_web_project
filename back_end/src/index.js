@@ -4,6 +4,7 @@ import express from "express";
 import authRouter from "./routes/api/v1/auth_router.js";
 import userRouter from "./routes/api/v1/user_router.js";
 import ideaRouter from "./routes/api/v1/idea_router.js";
+import commentRouter from "./routes/api/v1/comment_router.js";
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -19,6 +20,7 @@ app.use(express.json())
 app.use(userRouter);
 app.use(authRouter);
 app.use(ideaRouter);
+app.use(commentRouter);
 
 app.listen(PORT);
 console.log('server started');
