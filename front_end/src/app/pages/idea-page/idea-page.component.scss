@@ -1,8 +1,5 @@
 @import "../../styles/theme_variables.scss";
 
-$idea-container-max-width: 700px;
-$idea-container-min-width: 260px;
-
 body {
   /* size */
   width: calc(100vw - (2 * 10%));
@@ -10,7 +7,6 @@ body {
   padding-top: 12px;
 
   line-break: auto;
-
   display: flex;
   flex-direction: row;
   gap: 48px;
@@ -42,6 +38,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  word-wrap: break-word; 
+  word-break: break-all; 
 }
 
 .idea-container .title {
