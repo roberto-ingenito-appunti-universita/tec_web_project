@@ -66,7 +66,8 @@ ideaRouter.post(
             });
             res.status(200).json({});
         } catch (error) {
-            res.status(404).json({});;
+            console.log(error);
+            res.status(404).json({ error: error });;
         }
     }
 )

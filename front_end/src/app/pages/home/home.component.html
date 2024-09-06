@@ -1,51 +1,40 @@
 <body>
   <div class="sort-bar">
-    <app-chip
-      label="Controverse"
-      [selected]="ideaService.sortType === 'default'"
-      (click)="sortIdeas('default')"
-    ></app-chip>
-    <app-chip
-      label="Unpopular"
-      [selected]="ideaService.sortType === 'unpopular'"
-      (click)="sortIdeas('unpopular')"
-    ></app-chip>
-    <app-chip
-      label="Mainstream"
-      [selected]="ideaService.sortType === 'mainstream'"
-      (click)="sortIdeas('mainstream')"
-    ></app-chip>
+    <app-chip label="Controverse"
+              [selected]="ideaService.sortType === 'default'"
+              (click)="sortIdeas('default')"></app-chip>
+    <app-chip label="Unpopular"
+              [selected]="ideaService.sortType === 'unpopular'"
+              (click)="sortIdeas('unpopular')"></app-chip>
+    <app-chip label="Mainstream"
+              [selected]="ideaService.sortType === 'mainstream'"
+              (click)="sortIdeas('mainstream')"></app-chip>
   </div>
+  
   <div class="ideas-grid">
-    @for (idea of ideaService.ideas; track idea.id) {
+    @for (idea of paginatedIdeas; track idea.id) {
     <div class="idea-container">
       <p class="title">{{ idea.title }}</p>
-      <div
-        class="description"
-        [innerHTML]="sanitizer.bypassSecurityTrustHtml(idea.description)"
-      ></div>
+      <div class="description"
+           [innerHTML]="sanitizer.bypassSecurityTrustHtml(idea.description)"></div>
       <div class="bottom-bar">
-        <div (click)="upVote($index)">
-          <div
-            [className]="
+        <div (click)="upVote(idea.id)">
+          <div [className]="
               'thumb ' +
               (idea.is_up_vote ?? false ? 'thumb-up-fill' : 'thumb-up-outline')
-            "
-          ></div>
+            "></div>
           {{ idea.up_vote_quantity }}
         </div>
-        <div (click)="downVote($index)">
-          <div
-            [className]="
+        <div (click)="downVote(idea.id)">
+          <div [className]="
               'thumb ' +
               (!(idea.is_up_vote ?? true)
                 ? 'thumb-down-fill'
                 : 'thumb-down-outline')
-            "
-          ></div>
+            "></div>
           {{ idea.down_vote_quantity }}
         </div>
-        <div (click)="onCommentClick($index)">
+        <div (click)="onCommentClick(idea.id)">
           <div class="comment"></div>
           {{ idea.comment_quantity }}
         </div>
@@ -56,5 +45,14 @@
     } @empty {
     <p>Nessuno ha ancora avuto l'ispirazione :(</p>
     }
+  </div>
+  <div class="pagination-buttons">
+    <button (click)="previousPage()"
+            [disabled]="currentPage === 1"
+            class="previous-page-button"></button>
+    <span>{{ currentPage }} - {{ pagesQuantity }}</span>
+    <button (click)="nextPage()"
+            [disabled]="currentPage === pagesQuantity"
+            class="next-page-button"></button>
   </div>
 </body>

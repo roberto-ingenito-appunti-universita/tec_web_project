@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { ChipComponent } from "./components/chip/chip.component";
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HomePageIdea } from '../../model/home_page_idea.type';
 
 @Component({
   selector: 'app-home',
@@ -18,9 +19,41 @@ export class HomeComponent implements OnInit {
   userService = inject(UserService);
   router = inject(Router);
 
+  public pagesQuantity: number = Number(sessionStorage.getItem("pagesQuantity") ?? 0);
+  public currentPage: number = Number(sessionStorage.getItem("currentPage") ?? 0);
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      sessionStorage.setItem('currentPage', this.currentPage.toString());
+    }
+  }
+  nextPage() {
+    if (this.currentPage < this.pagesQuantity) {
+      this.currentPage++;
+      sessionStorage.setItem('currentPage', this.currentPage.toString());
+    }
+  }
+
+
+  public get paginatedIdeas(): HomePageIdea[] | undefined {
+    let start = (this.currentPage - 1) * 10;
+    let end = start + 10;
+    return this.ideaService.ideas.slice(start, end);
+  }
+
+
   ngOnInit() {
     if (this.ideaService.ideas.length == 0) {
-      this.ideaService.loadIdeas();
+      this.ideaService.loadIdeas().then((_) => {
+        let ideasQuantity = this.ideaService.ideas.length;
+
+        this.currentPage = ideasQuantity > 0 ? 1 : 0;
+        this.pagesQuantity = Math.ceil(ideasQuantity / 10);
+
+        sessionStorage.setItem('pagesQuantity', this.pagesQuantity.toString());
+        sessionStorage.setItem('currentPage', this.currentPage.toString());
+      });
     }
   }
 
@@ -28,53 +61,53 @@ export class HomeComponent implements OnInit {
     this.ideaService.sortIdeas(sortType);
   }
 
-  onCommentClick(index: number) {
-    this.router.navigate(['idea'], { queryParams: { index: index } })
+  onCommentClick(ideaID: number) {
+    this.router.navigate(['idea'], { queryParams: { id: ideaID } })
   }
 
-  upVote(index: number) {
+  upVote(ideaID: number) {
     const user = this.userService.getUser();
+    const idea = this.ideaService.ideas.find((idea) => idea.id == ideaID);
+
+    if (idea === undefined) return;
+
+    const isUpVote = idea.is_up_vote;
 
     // user can't upvote himself
-    if (user.username === this.ideaService.ideas[index].userFK) return;
+    if (user.username === idea.userFK) return;
 
-    this.ideaService.upVote(this.ideaService.ideas[index]);
-    const isUpVote = this.ideaService.ideas[index].is_up_vote;
+    this.ideaService.upVote(idea);
 
-    if (isUpVote == null) {
-      this.ideaService.ideas[index].is_up_vote = true;
-      this.ideaService.ideas[index].up_vote_quantity++;
-    } else if (isUpVote) {
-      this.ideaService.ideas[index].is_up_vote = null;
-      this.ideaService.ideas[index].up_vote_quantity--;
+    if (isUpVote == null || !isUpVote) {
+      idea.is_up_vote = true;
+      idea.up_vote_quantity++;
+      if (isUpVote === false) idea.down_vote_quantity--; // Se era un downvote, lo annulla
     } else {
-      this.ideaService.ideas[index].is_up_vote = true;
-      this.ideaService.ideas[index].up_vote_quantity++;
-      this.ideaService.ideas[index].down_vote_quantity--;
+      idea.is_up_vote = null;
+      idea.up_vote_quantity--;
     }
   }
 
-  downVote(index: number) {
+  downVote(ideaID: number) {
     const user = this.userService.getUser();
+    const idea = this.ideaService.ideas.find((idea) => idea.id == ideaID);
+
+    if (idea === undefined) return;
+
+    const isUpVote = idea.is_up_vote;
 
     // user can't downvote himself
-    if (user.username === this.ideaService.ideas[index].userFK) return;
+    if (user.username === idea.userFK) return;
 
-    this.ideaService.downVote(this.ideaService.ideas[index]);
-    const isUpVote = this.ideaService.ideas[index].is_up_vote;
+    this.ideaService.downVote(idea);
 
-    if (isUpVote == null) {
-      this.ideaService.ideas[index].is_up_vote = false;
-      this.ideaService.ideas[index].down_vote_quantity++;
-    } else if (!isUpVote) {
-      this.ideaService.ideas[index].is_up_vote = null;
-      this.ideaService.ideas[index].down_vote_quantity--;
+    if (isUpVote == null || isUpVote) {
+      idea.is_up_vote = false;
+      idea.down_vote_quantity++;
+      if (isUpVote === true) idea.up_vote_quantity--; // Se era un upvote, lo annulla
     } else {
-      this.ideaService.ideas[index].is_up_vote = false;
-      this.ideaService.ideas[index].down_vote_quantity++;
-      this.ideaService.ideas[index].up_vote_quantity--;
+      idea.is_up_vote = null;
+      idea.down_vote_quantity--;
     }
   }
-
-
 }

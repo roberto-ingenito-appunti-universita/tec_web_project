@@ -20,8 +20,8 @@ export class IdeaPageComponent implements OnInit {
   commentService = inject(CommentService);
   sanitizer = inject(DomSanitizer);
 
-  public idea: HomePageIdea | null = null;
-  private ideaIndex: number | undefined;
+  public idea: HomePageIdea | undefined;
+  private ideaID: number | undefined;
 
   public comments: Comment[] = [];
 
@@ -30,18 +30,21 @@ export class IdeaPageComponent implements OnInit {
 
   async ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.ideaIndex = params['index'];
+      this.ideaID = params['id'];
     });
 
     if (this.ideaService.ideas.length == 0) {
       await this.ideaService.loadIdeas();
     }
 
-    if (!(this.ideaIndex !== undefined && Number.isInteger(Number(this.ideaIndex)) && this.ideaIndex >= 0 && this.ideaIndex < this.ideaService.ideas.length)) {
+    if (this.ideaID === undefined || !Number.isInteger(Number(this.ideaID))) {
       this.router.navigate(['home']);
     } else {
-      this.idea = this.ideaService.ideas[this.ideaIndex];
-      this.comments = await this.commentService.loadComments(this.idea.id);
+      this.idea = this.ideaService.ideas.find((idea) => idea.id == this.ideaID);
+
+      if (this.idea === undefined) this.router.navigate(['home']);
+
+      this.comments = await this.commentService.loadComments(this.ideaID);
     }
   }
 
@@ -54,7 +57,7 @@ export class IdeaPageComponent implements OnInit {
         const newComment = await this.commentService.publishComment({ ideaID: this.idea!.id, text: comment });
         alert("Commento pubblicato!");
         this.comments.unshift(newComment);
-        this.ideaService.ideas[this.ideaIndex!].comment_quantity++;
+        this.idea!.comment_quantity++;
       } catch (error) {
         alert(`Errore nella pubblicazione del commento\nErrore: ${JSON.stringify(error)}`);
       }

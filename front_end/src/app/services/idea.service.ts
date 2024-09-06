@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { UserService } from './user.service';
 import { HomePageIdea } from '../model/home_page_idea.type';
 import { BackendService } from './backend.service';
+import { HomeComponent } from '../pages/home/home.component';
 
 @Injectable({ providedIn: 'root' })
 export class IdeaService {
@@ -58,6 +59,9 @@ export class IdeaService {
             this.httpOptions
         );
         await firstValueFrom(apiCall);
+
+        let pagesQuantity = Math.ceil(this.ideas.length / 10);
+        sessionStorage.setItem('pagesQuantity', pagesQuantity.toString());
     }
 
     sortIdeas(type: 'default' | 'unpopular' | 'mainstream') {

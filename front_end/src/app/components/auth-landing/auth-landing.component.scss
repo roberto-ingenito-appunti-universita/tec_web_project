@@ -13,7 +13,7 @@
   padding: 2rem;
 
   width: 500px;
-  height: calc(100vh - 4rem);
+  height: calc(100svh - 4rem);
 }
 
 .title {
@@ -74,7 +74,7 @@ h2 {
   min-width: 260px;
 
   word-wrap: break-word;
-  word-break: break-all; 
+  // word-break: break-all; 
 }
 
 @media (max-width: 1100px) {
@@ -84,7 +84,7 @@ h2 {
     margin: 0px;
     border-radius: 0;
     padding: 1rem;
-    height: calc(100vh - 2rem);
+    height: calc(100svh - 2rem);
   }
 
   .arrow-down-container {
