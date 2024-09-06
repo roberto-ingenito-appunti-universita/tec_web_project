@@ -175,7 +175,3 @@ await User.bulkCreate(users);
 await Idea.bulkCreate(ideas);
 
 await Vote.bulkCreate(votes);
-
-
-// npm install;node ./config/db_init.js;sleep 10;node ./back_end/src/config/db_fill.js;
-// NqcKX2K2OjDpNGtl

@@ -2,9 +2,9 @@ import { Sequelize } from "sequelize";
 
 const connection = new Sequelize({
     database: "postgres",
-    username: "postgres.ijlttpzikglpuvnfqzcn",
-    password: "NqcKX2K2OjDpNGtl",
-    host: "aws-0-eu-central-1.pooler.supabase.com",
+    username: "postgres",
+    password: "admin",
+    host: "localhost",
     port: 5432,
     schema: "public",
     dialect: "postgres",
