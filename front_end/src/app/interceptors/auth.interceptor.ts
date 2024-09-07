@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { jwtDecode } from 'jwt-decode'
 import LocalStorageKeys from '../local_storage_keys';
 import { User } from '../model/user.type';
+import { environment } from '../../environments/environment';
 
 export default function authInterceptor(request: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
     return from(getToken()).pipe(
@@ -32,7 +33,7 @@ async function getToken() {
                 //      questo è fondamentale altrimenti anche questa richiesta viene intercettata 
                 //      mandando tutto il processo in loop
                 new HttpClient(inject(HttpBackend)).post<{ token: string }>(
-                    'http://localhost:3000/api/v1/auth/refresh-token',
+                    `${environment.hostName}/api/v1/auth/refresh-token`,
                     { username: user.username },
                     httpOptions,
                 )
