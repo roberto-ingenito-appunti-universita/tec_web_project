@@ -17,7 +17,11 @@ authRouter.post(
 
             if (user) {
                 const token = jwt.sign({ username: req.body.username }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
-                res.status(200).json({ user: user, token: token });
+                if (token) {
+                    res.status(200).json({ user: user, token: token });
+                } else {
+                    res.status(401).json({ message: 'InvalidToken' })
+                }
             } else {
                 res.status(401).json({ message: 'InvalidCredential' })
             }
