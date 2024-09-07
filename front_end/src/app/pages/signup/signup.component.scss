@@ -11,7 +11,7 @@ body {
 
 .container {
   display: flex;
-  height: 100svh;
+  height: 100lvh;
 }
 
 .right-column {
@@ -130,6 +130,6 @@ button:hover {
 
   .right-column {
     flex: none;
-    height: 100svh;
+    height: 100lvh;
   }
 }

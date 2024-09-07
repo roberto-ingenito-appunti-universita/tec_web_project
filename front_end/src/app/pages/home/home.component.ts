@@ -19,42 +19,28 @@ export class HomeComponent implements OnInit {
   userService = inject(UserService);
   router = inject(Router);
 
-  public pagesQuantity: number = Number(sessionStorage.getItem("pagesQuantity") ?? 0);
-  public currentPage: number = Number(sessionStorage.getItem("currentPage") ?? 0);
 
   previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      sessionStorage.setItem('currentPage', this.currentPage.toString());
+    if (this.ideaService.currentPage > 1) {
+      this.ideaService.currentPage--;
     }
   }
   nextPage() {
-    if (this.currentPage < this.pagesQuantity) {
-      this.currentPage++;
-      sessionStorage.setItem('currentPage', this.currentPage.toString());
+    if (this.ideaService.currentPage < this.ideaService.pagesQuantity) {
+      this.ideaService.currentPage++;
     }
   }
 
 
   public get paginatedIdeas(): HomePageIdea[] | undefined {
-    let start = (this.currentPage - 1) * 10;
+    let start = (this.ideaService.currentPage - 1) * 10;
     let end = start + 10;
     return this.ideaService.ideas.slice(start, end);
   }
 
 
   ngOnInit() {
-    if (this.ideaService.ideas.length == 0) {
-      this.ideaService.loadIdeas().then((_) => {
-        let ideasQuantity = this.ideaService.ideas.length;
-
-        this.currentPage = ideasQuantity > 0 ? 1 : 0;
-        this.pagesQuantity = Math.ceil(ideasQuantity / 10);
-
-        sessionStorage.setItem('pagesQuantity', this.pagesQuantity.toString());
-        sessionStorage.setItem('currentPage', this.currentPage.toString());
-      });
-    }
+    if (this.ideaService.ideas.length === 0) this.ideaService.loadIdeas();
   }
 
   sortIdeas(sortType: 'default' | 'unpopular' | 'mainstream') {
