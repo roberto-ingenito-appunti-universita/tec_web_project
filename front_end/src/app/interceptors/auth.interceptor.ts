@@ -19,6 +19,8 @@ export default function authInterceptor(request: HttpRequest<any>, next: HttpHan
 // restituisce il token corrente, se è scaduto lo aggiorna
 async function getToken() {
     let token = inject(AuthService).getToken();
+    console.log(environment.hostName);
+    console.log(token);
 
     if (token) {
         const decodedToken = jwtDecode(token);
@@ -28,6 +30,7 @@ async function getToken() {
         if (currentDate > expirationDate) { // is token expired
             const user: User = JSON.parse(localStorage.getItem(LocalStorageKeys.userData)!);
             const httpOptions = { headers: { "Content-Type": "application/json" } };
+            
             const { token: refreshedToken } = await firstValueFrom(
                 // HttpBackend esegue direttamente la richiesta senza passare per gli interceptors
                 //      questo è fondamentale altrimenti anche questa richiesta viene intercettata 
