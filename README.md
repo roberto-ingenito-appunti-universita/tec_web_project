@@ -37,3 +37,9 @@ Package Manager: npm 10.8.2
 
 ## Avvio dell'app
 1. esegui `npm start` in entrambe le cartelle `back_end` e `front_end` per avviare il server e l'applicazione
+
+
+# QRCode Sito
+<img src="./qrcode.png" alt="QR Code" width="200"/>
+
+
