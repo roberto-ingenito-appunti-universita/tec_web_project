@@ -16,7 +16,7 @@ const app = express()
 app.use(cors({
     origin: 'https://tec-web-project-frontend.onrender.com',
     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-    credentials: true // If you're using cookies or authentication
+    credentials: true 
   }));
 app.use(express.json());
 
