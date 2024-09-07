@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   router = inject(Router);
 
   public pagesQuantity: number = Number(sessionStorage.getItem("pagesQuantity") ?? 0);
-  public currentPage: number = Number(sessionStorage.getItem("currentPage") ?? 0);
+  public currentPage: number = Number(sessionStorage.getItem("currentPage") ?? 1);
 
   previousPage() {
     if (this.currentPage > 1) {
@@ -44,7 +44,11 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    if (this.ideaService.ideas.length == 0) {
+    console.log(sessionStorage);
+
+    let firstLoadDone: string | null = sessionStorage.getItem('home_page_first_load_done');
+
+    if (firstLoadDone === null ? false : JSON.parse(firstLoadDone) as boolean) {
       this.ideaService.loadIdeas().then((_) => {
         let ideasQuantity = this.ideaService.ideas.length;
 
@@ -53,6 +57,8 @@ export class HomeComponent implements OnInit {
 
         sessionStorage.setItem('pagesQuantity', this.pagesQuantity.toString());
         sessionStorage.setItem('currentPage', this.currentPage.toString());
+
+        sessionStorage.setItem('home_page_first_load_done', JSON.stringify(true))
       });
     }
   }
