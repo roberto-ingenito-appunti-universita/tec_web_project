@@ -19,8 +19,6 @@ export default function authInterceptor(request: HttpRequest<any>, next: HttpHan
 // restituisce il token corrente, se è scaduto lo aggiorna
 async function getToken() {
     let token = inject(AuthService).getToken();
-    console.log(environment.hostName);
-    console.log(token);
 
     if (token) {
         const decodedToken = jwtDecode(token);
