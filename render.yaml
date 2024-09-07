@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: tec_web_project-frontend
+    env: static
+    staticPublishPath: dist/hive-mind/browser
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

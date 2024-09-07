@@ -7,7 +7,7 @@ import { BackendService } from './backend.service';
 export class UserService {
     private apiUrl = `${this.backendService.apiUrl}/user`;
 
-    constructor( private backendService: BackendService) { }
+    constructor(private backendService: BackendService) { }
 
     getUser(): User { return JSON.parse(localStorage.getItem(LocalStorageKeys.userData)!); }
 }

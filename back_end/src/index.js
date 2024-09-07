@@ -8,19 +8,33 @@ import commentRouter from "./routes/api/v1/comment_router.js";
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+
 dotenv.config()
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express()
 
-app.use(cors())
+if (process.argv[2] === "debug") {
+  app.use(cors())
+} else {
+  app.use(cors({
+    origin: 'https://tec-web-project-frontend.onrender.com', // Add the frontend origin here
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods if needed
+    credentials: true // If you're using cookies or authentication
+  }));
+}
+
 app.use(express.json())
 
 /* routes */
 app.use(userRouter);
 app.use(authRouter);
-app.use(ideaRouter);    
+app.use(ideaRouter);
 app.use(commentRouter);
 
-app.listen(PORT, 'localhost');
+if (process.argv[2] === "debug") {
+  app.listen(PORT, "localhost");
+} else {
+  app.listen(PORT);
+}
 console.log('server started');

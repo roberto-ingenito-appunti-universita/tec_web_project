@@ -1,7 +1,8 @@
 {
   "type": "module",
   "scripts": {
-    "start": "nodemon ./src/index.js"
+    "start-debug": "nodemon ./src/index.js debug",
+    "start-release": "node ./src/index.js production"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

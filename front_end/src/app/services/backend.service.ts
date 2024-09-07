@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class BackendService {
-    public apiUrl = 'http://localhost:3000/api/v1';
+    constructor() { console.log(environment.hostName); }
+    public apiUrl = `${environment.hostName}/api/v1`;
 }
