@@ -45,7 +45,7 @@ export class AuthService {
             this.httpOptions
         ).subscribe({
             next: (response) => {
-                console.log(`RESPONSE: ${response}`);
+                console.log(`RESPONSE: ${response} - ${this.apiUrl}`);
                 
                 localStorage.setItem(LocalStorageKeys.jwtToken, response.token);
                 localStorage.setItem(LocalStorageKeys.userData, JSON.stringify(response.user));
