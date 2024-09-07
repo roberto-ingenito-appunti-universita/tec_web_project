@@ -46,9 +46,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     console.log(sessionStorage);
 
-    let firstLoadDone: string | null = sessionStorage.getItem('home_page_first_load_done');
+    let firstLoadDone: boolean = JSON.parse(sessionStorage.getItem('home_page_first_load_done') ?? "false");
 
-    if (firstLoadDone === null ? false : JSON.parse(firstLoadDone) as boolean) {
+    if (!firstLoadDone) {
       this.ideaService.loadIdeas().then((_) => {
         let ideasQuantity = this.ideaService.ideas.length;
 
