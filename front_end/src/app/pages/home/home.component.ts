@@ -19,25 +19,21 @@ export class HomeComponent implements OnInit {
   userService = inject(UserService);
   router = inject(Router);
 
-  public pagesQuantity: number = Number(sessionStorage.getItem("pagesQuantity") ?? 0);
-  public currentPage: number = Number(sessionStorage.getItem("currentPage") ?? 1);
 
   previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      sessionStorage.setItem('currentPage', this.currentPage.toString());
+    if (this.ideaService.currentPage > 1) {
+      this.ideaService.currentPage--;
     }
   }
   nextPage() {
-    if (this.currentPage < this.pagesQuantity) {
-      this.currentPage++;
-      sessionStorage.setItem('currentPage', this.currentPage.toString());
+    if (this.ideaService.currentPage < this.ideaService.pagesQuantity) {
+      this.ideaService.currentPage++;
     }
   }
 
 
   public get paginatedIdeas(): HomePageIdea[] | undefined {
-    let start = (this.currentPage - 1) * 10;
+    let start = (this.ideaService.currentPage - 1) * 10;
     let end = start + 10;
     return this.ideaService.ideas.slice(start, end);
   }
@@ -46,19 +42,12 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     console.log(sessionStorage);
 
-    let firstLoadDone: boolean = JSON.parse(sessionStorage.getItem('home_page_first_load_done') ?? "false");
-
-    if (!firstLoadDone) {
+    if (this.ideaService.ideas.length === 0) {
       this.ideaService.loadIdeas().then((_) => {
         let ideasQuantity = this.ideaService.ideas.length;
 
-        this.currentPage = ideasQuantity > 0 ? 1 : 0;
-        this.pagesQuantity = Math.ceil(ideasQuantity / 10);
-
-        sessionStorage.setItem('pagesQuantity', this.pagesQuantity.toString());
-        sessionStorage.setItem('currentPage', this.currentPage.toString());
-
-        sessionStorage.setItem('home_page_first_load_done', JSON.stringify(true))
+        this.ideaService.currentPage = ideasQuantity > 0 ? 1 : 0;
+        this.ideaService.pagesQuantity = Math.ceil(ideasQuantity / 10);
       });
     }
   }

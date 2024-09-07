@@ -5,7 +5,6 @@ import { firstValueFrom } from 'rxjs';
 import { UserService } from './user.service';
 import { HomePageIdea } from '../model/home_page_idea.type';
 import { BackendService } from './backend.service';
-import { HomeComponent } from '../pages/home/home.component';
 
 @Injectable({ providedIn: 'root' })
 export class IdeaService {
@@ -15,6 +14,8 @@ export class IdeaService {
     private httpOptions = { headers: { "Content-Type": "application/json" } };
     private userService = inject(UserService);
 
+    public pagesQuantity: number = Number(sessionStorage.getItem("pagesQuantity") ?? 0);
+    public currentPage: number = Number(sessionStorage.getItem("currentPage") ?? 1);
 
     public ideas: HomePageIdea[] = [];
     public sortType: 'default' | 'unpopular' | 'mainstream' = 'default';

@@ -10,7 +10,7 @@
               [selected]="ideaService.sortType === 'mainstream'"
               (click)="sortIdeas('mainstream')"></app-chip>
   </div>
-  
+
   <div class="ideas-grid">
     @for (idea of paginatedIdeas; track idea.id) {
     <div class="idea-container">
@@ -48,11 +48,11 @@
   </div>
   <div class="pagination-buttons">
     <button (click)="previousPage()"
-            [disabled]="currentPage === 1"
+            [disabled]="ideaService.currentPage === 1"
             class="previous-page-button"></button>
-    <span>{{ currentPage }} - {{ pagesQuantity }}</span>
+    <span>{{ ideaService.currentPage }} - {{ ideaService.pagesQuantity }}</span>
     <button (click)="nextPage()"
-            [disabled]="currentPage === pagesQuantity"
+            [disabled]="ideaService.currentPage === ideaService.pagesQuantity"
             class="next-page-button"></button>
   </div>
 </body>
