@@ -22,5 +22,5 @@ app.use(authRouter);
 app.use(ideaRouter);    
 app.use(commentRouter);
 
-app.listen(PORT, 'localhost');
+app.listen(PORT);
 console.log('server started');
