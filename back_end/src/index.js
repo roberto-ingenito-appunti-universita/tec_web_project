@@ -11,16 +11,16 @@ import dotenv from 'dotenv';
 
 dotenv.config()
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const app = express()
 
 if (process.argv[2] === "debug") {
   app.use(cors())
 } else {
   app.use(cors({
-    origin: 'https://tec-web-project-frontend.onrender.com', // Add the frontend origin here
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods if needed
-    credentials: true // If you're using cookies or authentication
+    origin: 'https://tec-web-project-frontend.onrender.com',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
   }));
 }
 
