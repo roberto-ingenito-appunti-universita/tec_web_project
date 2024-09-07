@@ -40,16 +40,7 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(sessionStorage);
-
-    if (this.ideaService.ideas.length === 0) {
-      this.ideaService.loadIdeas().then((_) => {
-        let ideasQuantity = this.ideaService.ideas.length;
-
-        this.ideaService.currentPage = ideasQuantity > 0 ? 1 : 0;
-        this.ideaService.pagesQuantity = Math.ceil(ideasQuantity / 10);
-      });
-    }
+    if (this.ideaService.ideas.length === 0) this.ideaService.loadIdeas();
   }
 
   sortIdeas(sortType: 'default' | 'unpopular' | 'mainstream') {

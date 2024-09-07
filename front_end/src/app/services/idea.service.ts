@@ -14,8 +14,9 @@ export class IdeaService {
     private httpOptions = { headers: { "Content-Type": "application/json" } };
     private userService = inject(UserService);
 
-    public pagesQuantity: number = Number(sessionStorage.getItem("pagesQuantity") ?? 0);
-    public currentPage: number = Number(sessionStorage.getItem("currentPage") ?? 1);
+    public currentPage: number = 1;
+    public get pagesQuantity(): number { return Math.ceil(this.ideas.length / 10) }
+
 
     public ideas: HomePageIdea[] = [];
     public sortType: 'default' | 'unpopular' | 'mainstream' = 'default';
@@ -30,6 +31,7 @@ export class IdeaService {
             )
         );
         this.sortIdeas(this.sortType);
+        this.currentPage = this.ideas.length > 0 ? 1 : 0
     }
 
     async upVote(idea: Idea) {
@@ -60,9 +62,6 @@ export class IdeaService {
             this.httpOptions
         );
         await firstValueFrom(apiCall);
-
-        let pagesQuantity = Math.ceil(this.ideas.length / 10);
-        sessionStorage.setItem('pagesQuantity', pagesQuantity.toString());
     }
 
     sortIdeas(type: 'default' | 'unpopular' | 'mainstream') {
