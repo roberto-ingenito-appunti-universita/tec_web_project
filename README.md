@@ -36,8 +36,8 @@ Package Manager: npm 10.8.2
 1. Successivamente esegui `node back_end/src/config/db_fill.js` per riempire il DB con dati di test.
 
 ## Avvio dell'app
-1. esegui `npm start` in entrambe le cartelle `back_end` e `front_end` per avviare il server e l'applicazione
-
+- esegui `npm run start-debug` nella cartella `back_end` per eseguire il server
+- esegui `npm start` nella cartella `front_end` per eseguire il sito web
 
 # QRCode Sito
 <img src="./qrcode.png" alt="QR Code" width="200"/>
