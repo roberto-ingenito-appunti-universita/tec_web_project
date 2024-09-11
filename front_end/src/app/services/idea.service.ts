@@ -22,7 +22,7 @@ export class IdeaService {
     public sortType: 'default' | 'unpopular' | 'mainstream' = 'default';
 
     async loadIdeas() {
-        const user = this.userService.getUser();
+        const user = this.userService.user;
 
         this.ideas = await firstValueFrom(
             this.http.get<HomePageIdea[]>(
@@ -35,7 +35,7 @@ export class IdeaService {
     }
 
     async upVote(idea: Idea) {
-        const user = this.userService.getUser();
+        const user = this.userService.user;
         const apiCall = this.http.post(
             `${this.apiUrl}/up-vote`,
             { username: user.username, ideaID: idea.id },
@@ -45,7 +45,7 @@ export class IdeaService {
     }
 
     async downVote(idea: Idea) {
-        const user = this.userService.getUser();
+        const user = this.userService.user;
         const apiCall = this.http.post(
             `${this.apiUrl}/down-vote`,
             { username: user.username, ideaID: idea.id },
@@ -55,7 +55,7 @@ export class IdeaService {
     }
 
     async publishIdea(title: string, description: string) {
-        const user = this.userService.getUser();
+        const user = this.userService.user;
         const apiCall = this.http.post(
             `${this.apiUrl}/publish`,
             { username: user.username, title: title, description: description },

@@ -7,7 +7,13 @@ import LocalStorageKeys from '../local_storage_keys';
 import { User } from '../model/user.type';
 import { environment } from '../../environments/environment';
 
+// request rappresenta la richiesta HTTP da inviare
+// next è un handler che permette di passare la richiesta al prossimo gestore nella catena di gestione delle richieste
+// Questo interceptor aggiunge il token di autenticazione 
 export default function authInterceptor(request: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
+    // trasforma getToken() in un observable
+    // pipe serve per comporre la richiesta con diversi operatori, 
+    // ad esempio switchMap, che annulla l'observable precedente e ne crea uno nuovo.
     return from(getToken()).pipe(
         switchMap((newToken: string | null) => {
             request = request.clone({ setHeaders: { Authorization: `Bearer ${newToken}` } });
@@ -28,7 +34,7 @@ async function getToken() {
         if (currentDate > expirationDate) { // is token expired
             const user: User = JSON.parse(localStorage.getItem(LocalStorageKeys.userData)!);
             const httpOptions = { headers: { "Content-Type": "application/json" } };
-            
+
             const { token: refreshedToken } = await firstValueFrom(
                 // HttpBackend esegue direttamente la richiesta senza passare per gli interceptors
                 //      questo è fondamentale altrimenti anche questa richiesta viene intercettata 

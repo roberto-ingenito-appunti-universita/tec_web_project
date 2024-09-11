@@ -9,5 +9,5 @@ export class UserService {
 
     constructor(private backendService: BackendService) { }
 
-    getUser(): User { return JSON.parse(localStorage.getItem(LocalStorageKeys.userData)!); }
+    public get user() : User { return JSON.parse(localStorage.getItem(LocalStorageKeys.userData)!); }
 }

@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
         if (this.authService.isLoggedIn()) {
             return true;
         } else {
-            this.router.navigate(['/signin']); // Redirige alla home page se loggato
+            this.router.navigate(['/signin']); // Redirige alla signin page se non loggato
             return false;
         }
     }
@@ -24,7 +24,8 @@ export class AuthRedirectGuard implements CanActivate {
         if (this.authService.isLoggedIn()) {
             this.router.navigate(['/home']); // Redirige alla home page se loggato
             return false;
+        } else {
+            return true;
         }
-        return true;
     }
 }

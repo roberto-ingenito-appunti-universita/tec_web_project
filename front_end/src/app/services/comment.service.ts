@@ -23,7 +23,7 @@ export class CommentService {
     }
 
     async publishComment({ text, ideaID }: { text: string, ideaID: number }) {
-        const username = this.userService.getUser().username;
+        const username = this.userService.user.username;
 
         const apiCall = this.http.post<Comment>(
             `${this.apiUrl}/publish`,

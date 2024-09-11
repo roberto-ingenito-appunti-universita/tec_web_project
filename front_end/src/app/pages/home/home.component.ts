@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
   }
 
   upVote(ideaID: number) {
-    const user = this.userService.getUser();
+    const user = this.userService.user;
     const idea = this.ideaService.ideas.find((idea) => idea.id == ideaID);
 
     if (idea === undefined) return;
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
   }
 
   downVote(ideaID: number) {
-    const user = this.userService.getUser();
+    const user = this.userService.user;
     const idea = this.ideaService.ideas.find((idea) => idea.id == ideaID);
 
     if (idea === undefined) return;
