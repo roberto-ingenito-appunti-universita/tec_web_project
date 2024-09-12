@@ -40,6 +40,8 @@ Package Manager: npm 10.8.2
 - esegui `npm start` nella cartella `front_end` per eseguire il sito web
 
 # QRCode Sito
+[Link al Sito](https://tec-web-project-frontend.onrender.com)
+
 <img src="./qrcode.png" alt="QR Code" width="200"/>
 
 
